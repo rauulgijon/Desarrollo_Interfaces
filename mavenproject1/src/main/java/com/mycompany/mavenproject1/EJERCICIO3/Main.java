@@ -25,26 +25,26 @@ public class Main {
         }
 
         // Mostramos el contenido de la pila
-        System.out.println("\nContenido de la pila (10 informes):");
+        System.out.println("Contenido de la pila (10 informes):");
         for (Informe inf : pilaInformes) {
             System.out.println(inf);
         }
 
         // Eliminamos todo el contenido
-        System.out.println("\nEliminando todos los informes...");
+        System.out.println("Eliminando todos los informes...");
         while (!pilaInformes.isEmpty()) {
             System.out.println("Eliminado -> " + pilaInformes.pop());
         }
 
         // Agregamos 5 informes
-        System.out.println("\nAgregando 5 informes...");
+        System.out.println("Agregando 5 informes...");
         for (int i = 11; i <= 15; i++) {
             int indiceTarea = i % 3;
             pilaInformes.push(new Informe(i, indiceTarea));
         }
 
         // Mostramos el contenido de la pila
-        System.out.println("\nContenido de la pila (5 informes):");
+        System.out.println("Contenido de la pila (5 informes):");
         for (Informe inf : pilaInformes) {
             System.out.println(inf);
         }
