@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package com.mycompany.mavenproject1.EJERCICIO2A;
+package EJERCICIOS2B;
 
+import com.mycompany.mavenproject1.EJERCICIO2A.*;
 import java.text.DecimalFormat;
 
 /**
@@ -32,8 +33,8 @@ public class Producto {
     }
     
     public double precioFinal(){
-        DecimalFormat df = new DecimalFormat("#,##");
-        return Double.parseDouble(df.format(this.precio * this.cantidad));
+        return this.precio * this.cantidad;
+
     }
     
     public static int randomCantidad(){
