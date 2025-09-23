@@ -1,0 +1,7 @@
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjemploListT\EjemploListT\bin\Debug\EjemploListT.exe.config
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjemploListT\EjemploListT\bin\Debug\EjemploListT.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjemploListT\EjemploListT\bin\Debug\EjemploListT.pdb
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjemploListT\EjemploListT\obj\Debug\EjemploListT.csproj.AssemblyReference.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjemploListT\EjemploListT\obj\Debug\EjemploListT.csproj.CoreCompileInputs.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjemploListT\EjemploListT\obj\Debug\EjemploListT.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjemploListT\EjemploListT\obj\Debug\EjemploListT.pdb

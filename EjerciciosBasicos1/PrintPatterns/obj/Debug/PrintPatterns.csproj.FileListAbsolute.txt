@@ -1,0 +1,7 @@
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\PrintPatterns\bin\Debug\PrintPatterns.exe.config
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\PrintPatterns\bin\Debug\PrintPatterns.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\PrintPatterns\bin\Debug\PrintPatterns.pdb
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\PrintPatterns\obj\Debug\PrintPatterns.csproj.AssemblyReference.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\PrintPatterns\obj\Debug\PrintPatterns.csproj.CoreCompileInputs.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\PrintPatterns\obj\Debug\PrintPatterns.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\PrintPatterns\obj\Debug\PrintPatterns.pdb

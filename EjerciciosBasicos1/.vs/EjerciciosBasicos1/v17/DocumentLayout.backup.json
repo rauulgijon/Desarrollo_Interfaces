@@ -7,16 +7,8 @@
       "RelativeMoniker": "D:0:0:{A6561AFE-90C4-4CF3-8DAF-EF10DC18B1A2}|EjerciciosBasicosOperacionesMatrices\\EjerciciosBasicosOperacionesMatrices.csproj|solutionrelative:ejerciciosbasicosoperacionesmatrices\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DFEBA1AC-3749-4307-BAFA-19D88680E3B2}|EjerciciosBasicosBuclesControlFlujo\\EjerciciosBasicosBuclesControlFlujo.csproj|c:\\users\\b15-02m\\documents\\cfgs\\desarrollo de interfaces\\u1\\desarrollo_interfaces\\ejerciciosbasicos1\\ejerciciosbasicosbuclescontrolflujo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFEBA1AC-3749-4307-BAFA-19D88680E3B2}|EjerciciosBasicosBuclesControlFlujo\\EjerciciosBasicosBuclesControlFlujo.csproj|solutionrelative:ejerciciosbasicosbuclescontrolflujo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{980219EF-B8E7-4834-B1DB-E493611715F7}|EjerciciosBasicos1\\EjerciciosBasicos1.csproj|c:\\users\\b15-02m\\documents\\cfgs\\desarrollo de interfaces\\u1\\desarrollo_interfaces\\ejerciciosbasicos1\\ejerciciosbasicos1\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{980219EF-B8E7-4834-B1DB-E493611715F7}|EjerciciosBasicos1\\EjerciciosBasicos1.csproj|solutionrelative:ejerciciosbasicos1\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{980219EF-B8E7-4834-B1DB-E493611715F7}|EjerciciosBasicos1\\EjerciciosBasicos1.csproj|c:\\users\\b15-02m\\documents\\cfgs\\desarrollo de interfaces\\u1\\desarrollo_interfaces\\ejerciciosbasicos1\\ejerciciosbasicos1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{980219EF-B8E7-4834-B1DB-E493611715F7}|EjerciciosBasicos1\\EjerciciosBasicos1.csproj|solutionrelative:ejerciciosbasicos1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42259C94-CCDA-47DA-82BA-E1909E6B58DA}|PrintPatterns\\PrintPatterns.csproj|c:\\users\\b15-02m\\documents\\cfgs\\desarrollo de interfaces\\u1\\desarrollo_interfaces\\ejerciciosbasicos1\\printpatterns\\figuras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42259C94-CCDA-47DA-82BA-E1909E6B58DA}|PrintPatterns\\PrintPatterns.csproj|solutionrelative:printpatterns\\figuras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,48 +28,22 @@
               "RelativeDocumentMoniker": "EjerciciosBasicosOperacionesMatrices\\Program.cs",
               "ToolTip": "C:\\Users\\b15-02m\\Documents\\CFGS\\DESARROLLO DE INTERFACES\\U1\\Desarrollo_Interfaces\\EjerciciosBasicos1\\EjerciciosBasicosOperacionesMatrices\\Program.cs",
               "RelativeToolTip": "EjerciciosBasicosOperacionesMatrices\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T10:36:01.705Z",
+              "WhenOpened": "2025-09-23T07:11:47.139Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\b15-02m\\Documents\\CFGS\\DESARROLLO DE INTERFACES\\U1\\Desarrollo_Interfaces\\EjerciciosBasicos1\\EjerciciosBasicosBuclesControlFlujo\\Program.cs",
-              "RelativeDocumentMoniker": "EjerciciosBasicosBuclesControlFlujo\\Program.cs",
-              "ToolTip": "C:\\Users\\b15-02m\\Documents\\CFGS\\DESARROLLO DE INTERFACES\\U1\\Desarrollo_Interfaces\\EjerciciosBasicos1\\EjerciciosBasicosBuclesControlFlujo\\Program.cs",
-              "RelativeToolTip": "EjerciciosBasicosBuclesControlFlujo\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
+              "Title": "Figuras.cs",
+              "DocumentMoniker": "C:\\Users\\b15-02m\\Documents\\CFGS\\DESARROLLO DE INTERFACES\\U1\\Desarrollo_Interfaces\\EjerciciosBasicos1\\PrintPatterns\\Figuras.cs",
+              "RelativeDocumentMoniker": "PrintPatterns\\Figuras.cs",
+              "ToolTip": "C:\\Users\\b15-02m\\Documents\\CFGS\\DESARROLLO DE INTERFACES\\U1\\Desarrollo_Interfaces\\EjerciciosBasicos1\\PrintPatterns\\Figuras.cs",
+              "RelativeToolTip": "PrintPatterns\\Figuras.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKUAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T10:23:54.53Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\b15-02m\\Documents\\CFGS\\DESARROLLO DE INTERFACES\\U1\\Desarrollo_Interfaces\\EjerciciosBasicos1\\EjerciciosBasicos1\\Class1.cs",
-              "RelativeDocumentMoniker": "EjerciciosBasicos1\\Class1.cs",
-              "ToolTip": "C:\\Users\\b15-02m\\Documents\\CFGS\\DESARROLLO DE INTERFACES\\U1\\Desarrollo_Interfaces\\EjerciciosBasicos1\\EjerciciosBasicos1\\Class1.cs",
-              "RelativeToolTip": "EjerciciosBasicos1\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T10:11:51.568Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\b15-02m\\Documents\\CFGS\\DESARROLLO DE INTERFACES\\U1\\Desarrollo_Interfaces\\EjerciciosBasicos1\\EjerciciosBasicos1\\Program.cs",
-              "RelativeDocumentMoniker": "EjerciciosBasicos1\\Program.cs",
-              "ToolTip": "C:\\Users\\b15-02m\\Documents\\CFGS\\DESARROLLO DE INTERFACES\\U1\\Desarrollo_Interfaces\\EjerciciosBasicos1\\EjerciciosBasicos1\\Program.cs",
-              "RelativeToolTip": "EjerciciosBasicos1\\Program.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowEAAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T08:54:18.971Z",
+              "WhenOpened": "2025-09-23T06:56:40.162Z",
               "EditorCaption": ""
             }
           ]
