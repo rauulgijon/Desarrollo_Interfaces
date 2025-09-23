@@ -20,8 +20,6 @@ namespace ejercicios1
 
             coche1.SetPrecio(24000);
 
-            Console.WriteLine(coche1.ToString());
-
 
             //Creamos 4 coches mas y los mostramos por consola
             Coche coche2 = new Coche(2, "Audi", "A3", 200, 30000);
