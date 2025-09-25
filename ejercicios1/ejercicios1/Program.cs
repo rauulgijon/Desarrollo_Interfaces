@@ -51,7 +51,7 @@ namespace ejercicios1
             for (int i = 0; i < c.GetLength(0); i++) {
                 for (int j = 0; j < c.GetLength(1); j++) {
                     int num = u.randomNumber(0, coches.Count -1);
-                    c [i,j] = (coches[num]);
+                    c [i,j] = coches[num];
 
                 }
             }
