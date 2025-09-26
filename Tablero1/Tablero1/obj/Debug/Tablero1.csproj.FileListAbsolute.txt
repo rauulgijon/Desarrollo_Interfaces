@@ -1,0 +1,8 @@
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\Tablero1\Tablero1\bin\Debug\Tablero1.exe.config
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\Tablero1\Tablero1\bin\Debug\Tablero1.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\Tablero1\Tablero1\bin\Debug\Tablero1.pdb
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\Tablero1\Tablero1\obj\Debug\Tablero1.csproj.AssemblyReference.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\Tablero1\Tablero1\obj\Debug\Tablero1.csproj.CoreCompileInputs.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\Tablero1\Tablero1\obj\Debug\Tablero1.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\Tablero1\Tablero1\obj\Debug\Tablero1.pdb
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\Tablero1\Tablero1\obj\Debug\Tablero1.exe.config

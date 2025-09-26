@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C42A2917-74FB-40E0-9EB0-A6528248CD0D}</ProjectGuid>
+    <ProjectGuid>{A6B985E1-2C51-4384-916F-1E4446F0E698}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ejercicios1</RootNamespace>
-    <AssemblyName>ejercicios1</AssemblyName>
+    <RootNamespace>Tablero1</RootNamespace>
+    <AssemblyName>Tablero1</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,9 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Producto.cs" />
-    <Compile Include="Utilidades.cs" />
-    <Compile Include="coche.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -65,10 +65,29 @@ namespace ejercicios1
                 }
                 Console.WriteLine();
             }
+
+            Producto[] lista = new Producto[2];
+
+
+            //Generamos aleatoriamente una cantidad y un precio para crear un producto
+            for (int i = 0; i < lista.Length; i++)
+            {
+                int cantidad = u.randomNumber(1, 10);
+                double precio = u.randomNumber(100, 1000);
+                Producto producto = new Producto(cantidad, precio);
+                lista[i] = producto;
+
+            }
+
+            // Mostramos en una tabla la cantidad, el precio y el precio final
+            Console.WriteLine("Cantidad\tPrecio\tPrecio Final");
+            foreach (Producto p in lista)
+            {
+                Console.WriteLine($"{p.GetCantidad()}\t\t{p.GetPrecio()}\t{p.precioFinal()}");
+            }
+           
+
             Console.ReadKey();
-
-
-
         }
     }
 }
