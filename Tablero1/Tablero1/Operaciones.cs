@@ -8,19 +8,20 @@ namespace Tablero1
 {
     internal class Operaciones
     {
-        public int randomNumber(int min, int max)
+        private static readonly Random random = new Random();
+
+        public static int randomNumber(int min, int max)
         {
-            Random random = new Random();
             return random.Next(min, max);
         }
 
-        public void mostrarMatriz(int[,] matriz)
+        public static void mostrarMatriz(int[,] matriz)
         {
             for (int i = 0; i < matriz.GetLength(0); i++)
             {
                 for (int j = 0; j < matriz.GetLength(1); j++)
                 {
-                    Console.Write(matriz[i, j] + "\t");
+                    Console.Write(matriz[i, j]);
                 }
                 Console.WriteLine();
             }
@@ -36,6 +37,17 @@ namespace Tablero1
                     {
                         matriz[i, j] = cadena;
                     }
+                }
+            }
+        }
+
+        public static void rellenarMatriz(int[,] matriz, int min, int max)
+        {
+            for (int i = 0; i < matriz.GetLength(0); i++)
+            {
+                for (int j = 0; j < matriz.GetLength(1); j++)
+                {
+                    matriz[i, j] = Operaciones.randomNumber(min, max);
                 }
             }
         }
@@ -60,7 +72,7 @@ namespace Tablero1
             {
                 for (int j = 0; j < matriz.GetLength(1); j++)
                 {
-                    Console.Write(matriz[i, j] + "\t");
+                    Console.Write(matriz[i, j] + " ");
                 }
                 Console.WriteLine();
             }
@@ -75,72 +87,95 @@ namespace Tablero1
             Console.WriteLine("5. Salir");
         }
 
-        public static void entradaMenu(string[,] tablero, ref bool salir, ref int posI, ref int posJ)
+        public static void entradaMenu(
+            string[,] tablero,
+            int[,] tablero2,
+            ref bool salir,
+            ref int posI,
+            ref int posJ,
+            ref int vidas,
+            ref int pocion)
         {
             try
             {
                 int opcionInt = 0;
                 if (int.TryParse(Console.ReadLine(), out opcionInt))
                 {
+                    int newI = posI, newJ = posJ;
                     switch (opcionInt)
                     {
-                        case 1:
-                            if (Operaciones.dentroMatriz(posI, posJ + 1, tablero)){
-                                tablero[posI, posJ] = "X";
-                                posJ++;
-                                tablero[posI, posJ] = "O";
-                            }
-                            break;
-                        case 2:
-                            if (Operaciones.dentroMatriz(posI, posJ - 1, tablero)){
-                                tablero[posI, posJ] = "X";
-                                posJ--;
-                                tablero[posI, posJ] = "O";
-                            }
-                            break;
-                        case 3:
-                            if (Operaciones.dentroMatriz(posI - 1, posJ, tablero)){
-                                tablero[posI, posJ] = "X";
-                                posI--;
-                                tablero[posI, posJ] = "O";
-                            }
-                            break;
-                        case 4:
-                            if (Operaciones.dentroMatriz(posI + 1, posJ, tablero)){
-                                tablero[posI, posJ] = "X";
-                                posI++;
-                                tablero[posI, posJ] = "O";
-                            }
-                            break;
-                        case 5:
-                            salir = true;
-                            break;
+                        case 1: newJ = posJ + 1; break; // Derecha
+                        case 2: newJ = posJ - 1; break; // Izquierda
+                        case 3: newI = posI - 1; break; // Arriba
+                        case 4: newI = posI + 1; break; // Abajo
+                        case 5: salir = true; return;
                         default:
                             Console.WriteLine("Opcion no valida");
-                            break;
+                            return;
+                    }
+
+                    if (Operaciones.dentroMatriz(newI, newJ, tablero))
+                    {
+                        tablero[posI, posJ] = "X";
+                        posI = newI;
+                        posJ = newJ;
+                        tablero[posI, posJ] = "M";
+
+                        int valor = tablero2[posI, posJ];
+                        if (valor == 0)
+                        {
+                            vidas--;
+                            Console.WriteLine("¡Has perdido una vida!");
+                        }
+                        else if (valor == 1)
+                        {
+                            vidas++;
+                            Console.WriteLine("¡Has ganado una vida!");
+                        }
+                        else if (valor == 2)
+                        {
+                            pocion += 2;
+                            Console.WriteLine("¡Has recogido 2ml de poción!");
+                        }
+
+                        if (vidas < 0)
+                        {
+                            vidas = 0;
+                            Console.WriteLine("¡Has perdido! No te quedan vidas.");
+                            mostrarMatriz(tablero);
+
+                            salir = true;
+                        }
+
+                        // Comprobación de victoria
+                        if (posI == 7 && posJ == 7 && vidas > 0 && pocion >= 5)
+                        {
+                            Console.WriteLine("¡Enhorabuena! Has llegado a la meta con vidas y poción suficiente. ¡Has ganado!");
+                            mostrarMatriz(tablero);
+
+                            salir = true;
+                        }
                     }
                 }
                 else
                 {
                     Console.WriteLine("Debes introducir un numero");
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
+        }
 
-
-
-
-
-
-
-
-
-
+        public static void mostrarEstadisticas(int vidas, int pocion)
+        {
+            Console.WriteLine("Vidas restantes: " + vidas);
+            Console.WriteLine("Poción recogida: " + pocion + "ml");
         }
     }
 }
+
 
 
 
