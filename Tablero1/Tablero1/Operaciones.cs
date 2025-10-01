@@ -126,24 +126,25 @@ namespace Tablero1
                         {
                             vidas--;
                             Console.WriteLine("¡Has perdido una vida!");
+                            tablero2[posI, posJ] = -1; // Marcar como visitada
                         }
                         else if (valor == 1)
                         {
                             vidas++;
                             Console.WriteLine("¡Has ganado una vida!");
+                            tablero2[posI, posJ] = -1; // Marcar como visitada
                         }
-                        else if (valor == 2)
+                        else
                         {
                             pocion += 2;
                             Console.WriteLine("¡Has recogido 2ml de poción!");
+                            tablero2[posI, posJ] = -1; // Marcar como visitada
                         }
 
                         if (vidas < 0)
                         {
                             vidas = 0;
                             Console.WriteLine("¡Has perdido! No te quedan vidas.");
-                            mostrarMatriz(tablero);
-
                             salir = true;
                         }
 
@@ -151,9 +152,11 @@ namespace Tablero1
                         if (posI == 7 && posJ == 7 && vidas > 0 && pocion >= 5)
                         {
                             Console.WriteLine("¡Enhorabuena! Has llegado a la meta con vidas y poción suficiente. ¡Has ganado!");
-                            mostrarMatriz(tablero);
-
                             salir = true;
+                        } 
+                        else if (posI == 7 && posJ == 7)
+                        {
+                            Console.WriteLine("Has llegado a la meta, pero no tienes suficientes vidas o poción. ¡Sigue intentando!");
                         }
                     }
                 }
@@ -175,6 +178,10 @@ namespace Tablero1
         }
     }
 }
+
+
+
+
 
 
 
