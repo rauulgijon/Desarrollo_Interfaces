@@ -1,0 +1,17 @@
+﻿<Window x:Class="HolaMundo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HolaMundo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="lLogin" Content="Usuario" HorizontalAlignment="Left" Margin="305,82,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lPassw" Content="Contraseña" HorizontalAlignment="Left" Margin="305,230,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Margin="305,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtPassw" HorizontalAlignment="Left" Margin="305,261,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnStart" Content="Iniciar sesión" HorizontalAlignment="Left" Margin="329,316,0,0" VerticalAlignment="Top" Click="btnStart_Click"/>
+
+    </Grid>
+</Window>
