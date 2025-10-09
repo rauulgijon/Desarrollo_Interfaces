@@ -71,7 +71,6 @@ namespace Spiderman
 
                 for (int i = 0; i < pasos; i++)
                 {
-                    ciudad.MarcarVisitada(spiderman.Fila, spiderman.Columna);
                     MoverSpiderman(opcion);
                     ciudad.RevelarCasilla(spiderman.Fila, spiderman.Columna);
                     ProcesarEvento();
