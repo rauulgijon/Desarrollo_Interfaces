@@ -133,15 +133,13 @@ namespace Spiderman
 
         private void ProcesarEvento()
         {
-            char evento = ciudad.GetValorInterno(spiderman.Fila, spiderman.Columna);
+            char evento; 
 
             switch (evento)
             {
                 case 'C':
                     civilesRescatados++;
-                    vidas++;
                     Console.WriteLine("¡Has rescatado un civil! +1 vida.");
-                    ciudad.SetValorInterno(spiderman.Fila, spiderman.Columna, 'N');
                     break;
                 case 'D':
                     vidas--;
@@ -160,7 +158,6 @@ namespace Spiderman
                 case 'B':
                     saltoDoble = true;
                     Console.WriteLine("¡Bonus! Puedes moverte doble en el próximo turno.");
-                    ciudad.SetValorInterno(spiderman.Fila, spiderman.Columna, 'N');
                     break;
                 case 'N':
                     Console.WriteLine("Casilla neutra. Nada sucede.");
@@ -170,12 +167,7 @@ namespace Spiderman
 
         private void Retroceder(int pasos)
         {
-            for (int i = 0; i < pasos; i++)
-            {
-                if (spiderman.Fila > 0)
-                    spiderman.Mover("arriba", TAM, TAM);
-            }
-            ciudad.RevelarCasilla(spiderman.Fila, spiderman.Columna);
+            
         }
 
         private void MoverAleatoriamente()

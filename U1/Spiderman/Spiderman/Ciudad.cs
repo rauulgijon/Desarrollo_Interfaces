@@ -71,24 +71,6 @@ namespace Spiderman
             matrizVisible[fila, columna] = 'S';
         }
 
-        // Devuelve el valor interno de la casilla (para eventos)
-        public char GetValorInterno(int fila, int columna)
-        {
-            return matrizInterna[fila, columna];
-        }
-        // Permite modificar el valor interno (por ejemplo, para marcar civiles rescatados)
-        public void SetValorInterno(int fila, int columna, char valor)
-        {
-            if (fila >= 0 && fila < matrizInterna.GetLength(0) && columna >= 0 && columna < matrizInterna.GetLength(1))
-            {
-                matrizInterna[fila, columna] = valor;
-            }
-            else
-            {
-                Console.WriteLine("Error: posición fuera de los límites de la ciudad.");
-            }
-        }
-
 
         // Mostrar mapa visible al jugador
         public void MostrarVisible()
