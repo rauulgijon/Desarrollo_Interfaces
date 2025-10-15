@@ -1,91 +1,125 @@
 ﻿using System;
-using System.Text;
 
 namespace Spiderman
 {
+    /**
+     * Representa la ciudad donde se desarrolla el juego.
+     * Contiene una matriz interna (con el contenido real) y una visible (lo que ve el jugador).
+     * Gestiona el estado del mapa y permite revelar, restaurar y consultar casillas.
+     */
     internal class Ciudad
     {
-        private const int TAM = 15;
-        private char[,] matrizInterna;   // Lo que realmente hay
-        private char[,] matrizVisible;   // Lo que ve el jugador
-        private int contador = 0;
+        private const int TAM = 15;          // Tamaño fijo del mapa
+        private char[,] matrizInterna;       // Contenido real del mapa (enemigos, civiles, etc.)
+        private char[,] matrizVisible;       // Lo que el jugador puede ver
+        private int contadorVillanos = 0;    // Controla el número máximo de villanos
 
+        /**
+         * Constructor: inicializa la ciudad generando las matrices interna y visible.
+         */
         public Ciudad()
         {
             matrizInterna = new char[TAM, TAM];
             matrizVisible = new char[TAM, TAM];
             InicializarInterna();
             InicializarVisible();
-            // Spiderman siempre arriba izquierda
-            matrizVisible[0, 0] = 'S';
+            matrizVisible[0, 0] = 'S'; // Spiderman inicia aquí
+            matrizInterna[0, 0] = 'N'; // Casilla inicial segura
         }
 
-        // Inicializa la matriz interna con caracteres aleatorios
+        /**
+         * Inicializa la matriz interna con contenido aleatorio.
+         * Limita el número de villanos a un máximo de 5.
+         */
         private void InicializarInterna()
         {
             for (int i = 0; i < TAM; i++)
             {
                 for (int j = 0; j < TAM; j++)
                 {
-                    matrizInterna[i, j] = Operaciones.RandomChar();
-                    if ((matrizInterna[i, j] == 'D') || (matrizInterna[i, j] == 'G') || (matrizInterna[i, j] == 'M'))
+                    char c = Operaciones.RandomChar();
+
+                    if (c == 'D' || c == 'G' || c == 'M')
                     {
-                        contador++;
-                        if (contador > 5)
-                        {
-                            matrizInterna[i, j] = Operaciones.RandomCharSinEnemigos(); // Rellenamos con otro valor
-                        }
+                        contadorVillanos++;
+                        if (contadorVillanos > 5)
+                            c = Operaciones.RandomCharSinEnemigos();
                     }
+
+                    matrizInterna[i, j] = c;
                 }
             }
-            // Nos aseguramos de que la casilla inicial no sea un enemigo
-            matrizInterna[0, 0] = 'N';
         }
 
-        // Inicializa la matriz visible (todo oculto)
+        /**
+         * Inicializa la matriz visible con 'O' (oculto).
+         */
         private void InicializarVisible()
         {
             for (int i = 0; i < TAM; i++)
-            {
                 for (int j = 0; j < TAM; j++)
-                {
                     matrizVisible[i, j] = 'O';
-                }
-            }
         }
 
-        // Revela la posición actual de Spiderman
+        /**
+         * Marca la posición actual de Spiderman con 'S'
+         * y deja un rastro 'X' en las posiciones anteriores.
+         */
         public void RevelarCasilla(int fila, int columna)
         {
-            // Primero, marcar la posición anterior como visitada
             for (int i = 0; i < TAM; i++)
-            {
                 for (int j = 0; j < TAM; j++)
-                {
-                    if (matrizVisible[i, j] == 'S')
-                        matrizVisible[i, j] = 'X'; // marca la anterior con X
-                }
-            }
+                    if (matrizVisible[i, j] == 'S') matrizVisible[i, j] = 'X';
 
-            // Ahora coloca Spiderman en la nueva posición
             matrizVisible[fila, columna] = 'S';
         }
 
-
-        // Mostrar mapa visible al jugador
+        /**
+         * Muestra en consola la parte visible del mapa.
+         */
         public void MostrarVisible()
         {
-            Console.Clear();
+            Console.WriteLine("\n===== MAPA DE NUEVA YORK =====");
             for (int i = 0; i < TAM; i++)
             {
                 for (int j = 0; j < TAM; j++)
-                {
                     Console.Write(matrizVisible[i, j] + " ");
-                }
                 Console.WriteLine();
             }
+            Console.WriteLine("==============================\n");
         }
 
+        /**
+         * Devuelve el carácter real de una posición interna del mapa.
+         */
+        public char GetInterna(int fila, int columna)
+        {
+            return matrizInterna[fila, columna];
+        }
 
+        /**
+         * Marca una posición como visitada (internamente 'X').
+         */
+        public void MarcarVisitadoInterno(int fila, int columna)
+        {
+            matrizInterna[fila, columna] = 'X';
+        }
+
+        /**
+         * Devuelve el tamaño del mapa.
+         */
+        public int GetTamaño()
+        {
+            return TAM;
+        }
+
+        /**
+         * Restaura una casilla como nueva (visible: 'O', interna: valor aleatorio).
+         */
+        public void RestaurarCasilla(int fila, int columna)
+        {
+            matrizVisible[fila, columna] = 'O';
+            matrizInterna[fila, columna] = Operaciones.RandomChar();
+        }
     }
 }

@@ -2,103 +2,50 @@
 
 namespace Spiderman
 {
+    /**
+     * Clase de utilidades que agrupa las operaciones de menú, azar y eventos.
+     */
     internal static class Operaciones
     {
         private static readonly Random random = new Random();
 
-        // Devuelve un char aleatorio entre 'C', 'D', 'G', 'M', 'B', 'N', 'X'
-        public static char RandomCharSinEnemigos()
-        {
-            char[] chars = { 'C','B', 'N' };
-            int index = random.Next(chars.Length);
-            return chars[index];
-        }
-
+        /**
+         * Genera un carácter aleatorio (C, D, G, M, N o B).
+         */
         public static char RandomChar()
         {
-            char[] chars = { 'C', 'D', 'G', 'M', 'B', 'N' };
-            int index = random.Next(chars.Length);
-            return chars[index];
+            char[] opciones = { 'C', 'D', 'G', 'M', 'N', 'B' };
+            return opciones[random.Next(opciones.Length)];
         }
 
-        public static void mostrarMatriz(int[,] matriz)
+        /**
+         * Genera un carácter aleatorio sin enemigos (C, N o B).
+         */
+        public static char RandomCharSinEnemigos()
         {
-            for (int i = 0; i < matriz.GetLength(0); i++)
-            {
-                for (int j = 0; j < matriz.GetLength(1); j++)
-                {
-                    Console.Write(matriz[i, j]);
-                }
-                Console.WriteLine();
-            }
+            char[] opciones = { 'C', 'N', 'B' };
+            return opciones[random.Next(opciones.Length)];
         }
 
-        public static void rellenarMatriz(String[,] matriz, String cadena)
+        /**
+         * Muestra el menú de acciones disponibles.
+         */
+        public static void MostrarMenu()
         {
-            for (int i = 0; i < matriz.GetLength(0); i++)
-            {
-                for (int j = 0; j < matriz.GetLength(1); j++)
-                {
-                    if (matriz[i, j] == null)
-                    {
-                        matriz[i, j] = cadena;
-                    }
-                }
-            }
+            Console.WriteLine("1. Mover Derecha");
+            Console.WriteLine("2. Mover Izquierda");
+            Console.WriteLine("3. Mover Arriba");
+            Console.WriteLine("4. Mover Abajo");
+            Console.WriteLine("5. Salir");
+            Console.Write("Selecciona una opción: ");
         }
 
-        public static void rellenarMatriz(int[,] matriz, int min, int max)
+        /**
+         * Muestra las estadísticas actuales del jugador.
+         */
+        public static void MostrarEstadisticas(int vidas, int civiles, int turnos)
         {
-            for (int i = 0; i < matriz.GetLength(0); i++)
-            {
-                for (int j = 0; j < matriz.GetLength(1); j++)
-                {
-                    matriz[i, j] = Operaciones.RandomChar();
-                }
-            }
-        }
-
-        public static bool dentroMatriz(int posI, int posJ, String[,] matriz)
-        {
-            if (posI >= 0 && posI < matriz.GetLength(0) && posJ >= 0 && posJ < matriz.GetLength(1))
-            {
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("No puedes salir del tablero");
-                return false;
-
-            }
-        }
-
-        public static void mostrarMatriz(String[,] matriz)
-        {
-            for (int i = 0; i < matriz.GetLength(0); i++)
-            {
-                for (int j = 0; j < matriz.GetLength(1); j++)
-                {
-                    Console.Write(matriz[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
-
-        // Genera un evento aleatorio para una casilla
-        public static char GenerarEvento()
-        {
-            // Puedes ajustar la probabilidad de cada evento
-            char[] eventos = { 'C', 'D', 'G', 'M', 'B', 'N' };
-            return eventos[random.Next(eventos.Length)];
+            Console.WriteLine($"\nVidas: {vidas} | Civiles: {civiles} (10 para ganar) | Turnos: {turnos}\n");
         }
     }
 }
-
-
-
-
-
-
-
-
-

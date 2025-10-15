@@ -1,0 +1,92 @@
+
+=========================================
+        DOCUMENTACIÓN DEL JUEGO
+         "SPIDERMAN EN LA CIUDAD"
+=========================================
+
+Autor: ChatGPT (OpenAI)
+Lenguaje: C#
+Estilo de comentarios: tipo Java (/** ... */)
+Descripción general:
+--------------------
+El juego simula una aventura de Spiderman en un mapa de 15x15 casillas.
+El jugador puede moverse en cuatro direcciones, enfrentarse a villanos,
+rescatar civiles y usar bonus de movimiento.
+
+Clases principales:
+-------------------
+
+1. Ciudad.cs
+-------------
+Representa el entorno del juego. Contiene la matriz interna (oculta)
+y la visible (lo que ve el jugador). Controla el mapa, genera enemigos
+y actualiza las casillas.
+
+Métodos:
+- Ciudad() → Constructor que inicializa el mapa.
+- InicializarInterna() → Rellena el mapa con valores aleatorios (máx. 5 villanos).
+- InicializarVisible() → Llena el mapa visible con 'O' (oculto).
+- RevelarCasilla(int, int) → Muestra la posición actual de Spiderman ('S') y deja rastro 'X'.
+- MostrarVisible() → Imprime el mapa visible sin limpiar la consola.
+- GetInterna(int, int) → Devuelve el valor real de una casilla.
+- MarcarVisitadoInterno(int, int) → Marca una casilla como visitada ('X').
+- GetTamaño() → Devuelve el tamaño del mapa.
+- RestaurarCasilla(int, int) → Restaura una casilla a estado oculto ('O') con valor nuevo aleatorio.
+
+-----------------------------------
+
+2. Operaciones.cs
+------------------
+Clase de utilidades estáticas. Proporciona funciones auxiliares
+para generar valores aleatorios, mostrar menús y estadísticas.
+
+Métodos:
+- RandomChar() → Devuelve un carácter aleatorio (C, D, G, M, N, B).
+- RandomCharSinEnemigos() → Devuelve un carácter sin villanos (C, N, B).
+- MostrarMenu() → Muestra las opciones de movimiento (arriba, abajo, izquierda, derecha).
+- MostrarEstadisticas(int, int, int) → Muestra vidas, civiles rescatados y turnos actuales.
+
+-----------------------------------
+
+3. Juego.cs
+------------
+Controla la lógica principal del juego. Administra los turnos,
+los movimientos y los eventos según las casillas que pisa Spiderman.
+
+Atributos:
+- ciudad → Instancia del mapa.
+- posI, posJ → Coordenadas de Spiderman.
+- vidas → Vidas restantes.
+- civiles → Civiles rescatados.
+- turnos → Número de turnos jugados.
+- salir → Control del bucle principal.
+- bonusSalto → Indica si Spiderman tiene un movimiento doble.
+
+Métodos:
+- Juego() → Constructor que inicializa el juego.
+- Iniciar() → Bucle principal del juego.
+- Mover(int) → Controla el movimiento en el mapa.
+- ProcesarEvento(char) → Ejecuta el evento asociado a una casilla.
+- Retroceder(int) → Retrocede 2 casillas y las restaura con nuevos valores aleatorios.
+- Teletransportar() → Mueve a Spiderman a una posición aleatoria del mapa.
+- ComprobarVictoriaODerrota() → Determina si el jugador gana o pierde.
+
+Eventos del mapa:
+-----------------
+C → Civil (+1 punto)
+D → Doctor Octopus (pierdes 1 vida y retrocedes 2 casillas)
+G → Duende Verde (pierdes 1 vida)
+M → Mysterio (teletransporta a un lugar aleatorio)
+B → Bonus de salto (doble movimiento en el próximo turno)
+N → Zona neutra (no ocurre nada)
+X → Casilla visitada
+
+Condiciones del juego:
+----------------------
+- Ganas si rescatas 10 civiles.
+- Pierdes si tus vidas son menores que 0.
+- El mapa no se limpia entre movimientos.
+- No hay pausas entre turnos.
+
+-----------------------------------
+Fin de la documentación.

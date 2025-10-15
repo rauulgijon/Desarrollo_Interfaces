@@ -2,190 +2,201 @@
 
 namespace Spiderman
 {
+    /**
+     * Controla la lógica principal del juego de Spiderman.
+     * Maneja los turnos, movimientos, eventos y condiciones de victoria o derrota.
+     */
     internal class Juego
     {
-        private const int TAM = 15;
-        private const int META_FILA = TAM - 1; 
-        private const int META_COLUMNA = TAM - 1;
-        private const int META_CIVILES = 5; // Número de civiles a rescatar para ganar
+        private Ciudad ciudad;     // Mapa del juego
+        private int posI, posJ;    // Posición actual de Spiderman
+        private int vidas;         // Vidas del jugador
+        private int civiles;       // Civiles rescatados
+        private int turnos;        // Contador de turnos
+        private bool salir;        // Control del bucle principal
+        private bool bonusSalto;   // Indica si el jugador tiene un movimiento doble
 
-        private Ciudad ciudad;
-        private Spiderman spiderman;
-        private int vidas;
-        private int civilesRescatados;
-        private bool turnoPerdido;
-        private bool saltoDoble;
-        private bool salir;
-        private Random random;
-
+        /**
+         * Constructor: inicializa las variables del juego.
+         */
         public Juego()
         {
             ciudad = new Ciudad();
-            spiderman = new Spiderman(0, 0);
-            ciudad.RevelarCasilla(spiderman.Fila, spiderman.Columna);
-
-            
-
+            posI = 0;
+            posJ = 0;
             vidas = 3;
-            civilesRescatados = 0;
-            turnoPerdido = false;
-            saltoDoble = false;
+            civiles = 0;
+            turnos = 0;
             salir = false;
-            random = new Random();
+            bonusSalto = false;
         }
 
+        /**
+         * Bucle principal del juego.
+         * Se ejecuta hasta que el jugador salga o pierda.
+         */
         public void Iniciar()
         {
-            Console.WriteLine("¡Bienvenido a Spiderman: Misión en Nueva York!");
-            Console.WriteLine($"Objetivo: Llegar abajo izquierda rescatando {META_CIVILES} civiles.\n");
-
             while (!salir)
             {
                 ciudad.MostrarVisible();
-                MostrarEstadisticas();
+                Operaciones.MostrarEstadisticas(vidas, civiles, turnos);
+                Operaciones.MostrarMenu();
 
-                if (turnoPerdido)
+                Console.Write("Elige opción: ");
+                if (!int.TryParse(Console.ReadLine(), out int opcion))
                 {
-                    Console.WriteLine("Pierdes este turno por un enemigo.");
-                    turnoPerdido = false;
+                    Console.WriteLine("Entrada no válida.");
                     continue;
                 }
 
-                MostrarMenu();
-                int opcion;
-                if (!int.TryParse(Console.ReadLine(), out opcion))
-                {
-                    Console.WriteLine("Debes ingresar un número válido.");
-                    continue;
-                }
-
-                if (opcion == 0)
+                if (opcion == 5)
                 {
                     salir = true;
-                    Console.WriteLine("Has decidido salir del juego.");
-                    continue;
-                }
-
-                int pasos = saltoDoble ? 2 : 1;
-                saltoDoble = false;
-
-                for (int i = 0; i < pasos; i++)
-                {
-                    MoverSpiderman(opcion);
-                    ciudad.RevelarCasilla(spiderman.Fila, spiderman.Columna);
-                    ProcesarEvento();
-
-                    // Mostrar mensaje y estadísticas tras cada movimiento
-                    MostrarEstadisticas();
-                    Console.ReadKey();
-
-                    if (salir) break;
-                }
-
-                // Condición de victoria
-                if (spiderman.Fila == META_FILA && spiderman.Columna == META_COLUMNA && civilesRescatados >= META_CIVILES)
-                {
-                    Console.WriteLine($"¡Has llegado a la meta y rescataste {civilesRescatados} civiles! ¡Victoria!");
-                    salir = true;
-                }
-
-                // Condición de derrota
-                if (vidas <= 0)
-                {
-                    Console.WriteLine("¡Has perdido todas tus vidas! Fin del juego.");
-                    salir = true;
-                }
-            }
-        }
-
-        private void MostrarEstadisticas()
-        {
-            Console.WriteLine($"\n Vidas: {vidas} | Civiles rescatados: {civilesRescatados}\n");
-        }
-
-        private void MostrarMenu()
-        {
-            Console.WriteLine("1. Mover Arriba");
-            Console.WriteLine("2. Mover Abajo");
-            Console.WriteLine("3. Mover Izquierda");
-            Console.WriteLine("4. Mover Derecha");
-            Console.WriteLine("0. Salir");
-            Console.Write("Elige una opción: ");
-        }
-
-        private bool MoverSpiderman(int opcion)
-        {
-            switch (opcion)
-            {
-                case 1: spiderman.Mover("arriba", TAM, TAM); break;
-                case 2: spiderman.Mover("abajo", TAM, TAM); break;
-                case 3: spiderman.Mover("izquierda", TAM, TAM); break;
-                case 4: spiderman.Mover("derecha", TAM, TAM); break;
-                default:
-                    Console.WriteLine("Opción no válida.");
+                    Console.WriteLine("Saliendo del juego...");
                     break;
+                }
+
+                Mover(opcion);
+                turnos++;
+                ComprobarVictoriaODerrota();
             }
-
-            ciudad.RevelarCasilla(spiderman.Fila, spiderman.Columna);
-
-            return false;
         }
 
-        private void ProcesarEvento()
+        /**
+         * Gestiona el movimiento de Spiderman según la opción elegida.
+         */
+        private void Mover(int opcion)
         {
-            char evento; 
+            int pasos = bonusSalto ? 2 : 1;
+            bonusSalto = false;
+            int tamaño = ciudad.GetTamaño();
 
+            int iActual = posI;
+            int jActual = posJ;
+
+            for (int paso = 1; paso <= pasos; paso++)
+            {
+                int nuevaI = iActual, nuevaJ = jActual;
+
+                switch (opcion)
+                {
+                    case 1: nuevaJ++; break; // Derecha
+                    case 2: nuevaJ--; break; // Izquierda
+                    case 3: nuevaI--; break; // Arriba
+                    case 4: nuevaI++; break; // Abajo
+                    default:
+                        Console.WriteLine("Opción inválida.");
+                        return;
+                }
+
+                if (nuevaI < 0 || nuevaI >= tamaño || nuevaJ < 0 || nuevaJ >= tamaño)
+                {
+                    Console.WriteLine("No puedes salir del mapa.");
+                    break;
+                }
+
+                ciudad.RevelarCasilla(nuevaI, nuevaJ);
+                ciudad.MarcarVisitadoInterno(iActual, jActual);
+
+                iActual = nuevaI;
+                jActual = nuevaJ;
+            }
+
+            posI = iActual;
+            posJ = jActual;
+
+            ProcesarEvento(ciudad.GetInterna(posI, posJ));
+        }
+
+        /**
+         * Determina qué ocurre al caer en una casilla (enemigos, civiles, bonus, etc.).
+         */
+        private void ProcesarEvento(char evento)
+        {
             switch (evento)
             {
                 case 'C':
-                    civilesRescatados++;
-                    Console.WriteLine("¡Has rescatado un civil! +1 vida.");
+                    civiles++;
+                    Console.WriteLine("Has rescatado a un civil (+1 punto).");
                     break;
+
                 case 'D':
                     vidas--;
+                    Console.WriteLine("¡Doctor Octopus! Pierdes 1 vida y retrocedes 2 casillas.");
                     Retroceder(2);
-                    Console.WriteLine("¡Doctor Octopus! -1 vida y retrocedes 2 casillas.");
                     break;
+
                 case 'G':
                     vidas--;
-                    turnoPerdido = true;
-                    Console.WriteLine("¡Duende Verde! -1 vida y pierdes turno.");
+                    Console.WriteLine("¡Duende Verde! Pierdes 1 vida.");
                     break;
+
                 case 'M':
-                    MoverAleatoriamente();
-                    Console.WriteLine("¡Mysterio! Cambias de posición aleatoriamente.");
+                    Console.WriteLine("¡Mysterio! Te teletransporta a un lugar aleatorio.");
+                    Teletransportar();
                     break;
+
                 case 'B':
-                    saltoDoble = true;
-                    Console.WriteLine("¡Bonus! Puedes moverte doble en el próximo turno.");
+                    bonusSalto = true;
+                    Console.WriteLine("¡Bonus de salto! Te moverás 2 casillas el próximo turno.");
                     break;
+
                 case 'N':
-                    Console.WriteLine("Casilla neutra. Nada sucede.");
+                    Console.WriteLine("Zona tranquila, no ocurre nada.");
+                    break;
+
+                case 'X':
+                    Console.WriteLine("Casilla ya visitada.");
                     break;
             }
+
+            ciudad.MarcarVisitadoInterno(posI, posJ);
         }
 
+        /**
+         * Retrocede una cantidad de casillas, restaurando las anteriores con valores nuevos.
+         */
         private void Retroceder(int pasos)
         {
-            
-        }
-
-        private void MoverAleatoriamente()
-        {
-            string[] direcciones = { "arriba", "abajo", "izquierda", "derecha" };
-            int intentos = 0;
-            while (intentos < 10)
+            for (int k = 1; k <= pasos; k++)
             {
-                string dir = direcciones[random.Next(direcciones.Length)];
-                int filaPrev = spiderman.Fila;
-                int colPrev = spiderman.Columna;
-                spiderman.Mover(dir, TAM, TAM);
-                if (spiderman.Fila != filaPrev || spiderman.Columna != colPrev) break;
-                intentos++;
+                int retroI = posI - k;
+                if (retroI >= 0)
+                    ciudad.RestaurarCasilla(retroI, posJ);
             }
-            ciudad.RevelarCasilla(spiderman.Fila, spiderman.Columna);
+
+            posI = Math.Max(0, posI - pasos);
+            ciudad.RevelarCasilla(posI, posJ);
         }
 
-        
+        /**
+         * Teletransporta al jugador a una posición aleatoria.
+         */
+        private void Teletransportar()
+        {
+            Random rnd = new Random();
+            int tamaño = ciudad.GetTamaño();
+            posI = rnd.Next(0, tamaño);
+            posJ = rnd.Next(0, tamaño);
+            ciudad.RevelarCasilla(posI, posJ);
+        }
+
+        /**
+         * Comprueba si el jugador ha ganado o perdido.
+         */
+        private void ComprobarVictoriaODerrota()
+        {
+            if (vidas < 0)
+            {
+                Console.WriteLine("¡Has perdido todas tus vidas! Fin del juego.");
+                salir = true;
+            }
+            else if (civiles >= 10)
+            {
+                Console.WriteLine("¡Has rescatado a 10 civiles! ¡Victoria!");
+                salir = true;
+            }
+        }
     }
 }
