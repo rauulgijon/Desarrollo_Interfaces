@@ -1,0 +1,91 @@
+﻿<Window x:Class="EjercicioMariposa.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Butterfly" Height="500" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Título centrado arriba -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="Butterfly"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,10,0,20"/>
+
+        <!-- Panel Izquierdo -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
+            <TextBlock Text="Posición Actual:" FontWeight="Bold" Margin="0,0,0,6"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="X:" VerticalAlignment="Center"/>
+                <TextBox Width="40" Margin="6,0" IsReadOnly="True"/>
+                <TextBlock Text="Y:" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                <TextBox Width="40" Margin="6,0" IsReadOnly="True"/>
+            </StackPanel>
+            <!-- Flechas centradas -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10">
+                <Grid Width="144" Height="109">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36"/>
+                        <ColumnDefinition Width="36"/>
+                        <ColumnDefinition Width="36"/>
+                        <ColumnDefinition Width="36"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Row="0" Grid.Column="1" Content="↑" FontSize="16"/>
+                    <Button Grid.Row="1" Grid.Column="0" Content="←" FontSize="16"/>
+                    <Button Grid.Row="1" Grid.Column="2" Content="→" FontSize="16"/>
+                    <Button Grid.Row="2" Grid.Column="1" Content="↓" FontSize="16"/>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <TextBlock Text="Nº Saltos:" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBox Width="60" Margin="8,0" IsReadOnly="True"/>
+            </StackPanel>
+
+            <TextBlock Text="Instrucciones:" FontWeight="Bold" Margin="0,18,0,6"/>
+            <TextBlock Text="Usa las flechas del teclado o los botones para mover la mariposa." TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Grid.Column="1" Margin="10" BorderBrush="Gray" BorderThickness="1" Padding="6" Background="#FFF">
+            <Grid Background="LightGoldenrodYellow" ShowGridLines="True">
+                <!-- Definición de filas y columnas para un tablero 8x8 -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!-- Figura que se encarga de moverse por el tablero -->
+                <Ellipse x:Name="butterfly" Grid.Row="4" Grid.Column="4" Width="30" Height="30" Fill="Purple"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
