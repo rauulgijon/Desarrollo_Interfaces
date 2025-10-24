@@ -1,0 +1,16 @@
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\bin\Debug\Menu.exe.config
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\bin\Debug\Menu.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\bin\Debug\Menu.pdb
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\Menu.csproj.AssemblyReference.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\MainWindow.g.cs
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\App.g.cs
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\Menu_MarkupCompile.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\Menu_MarkupCompile.lref
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\MainWindow.baml
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\Menu.g.resources
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\Menu.Properties.Resources.resources
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\Menu.csproj.GenerateResource.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\Menu.csproj.CoreCompileInputs.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\Menu.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\Menu.pdb
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\Menu\obj\Debug\Menu.exe.config

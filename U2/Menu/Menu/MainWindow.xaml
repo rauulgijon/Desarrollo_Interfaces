@@ -1,0 +1,32 @@
+﻿<Window x:Class="Menu.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Menu"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Menu Name="menu1" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <MenuItem Header="_Archivo" >
+                <MenuItem Header="A_brir" IsCheckable="true" />
+                <MenuItem Header="_Cerrar" IsCheckable="true" IsChecked="True" >
+                    <Separator />
+                </MenuItem>
+                <MenuItem Header="_Guardar" >
+                </MenuItem>
+                <MenuItem Header="A_gregar" >
+                    <MenuItem Header="Proyecto" />
+                    <MenuItem Header="Archivo" />
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <Label x:Name="lblMensaje" Content="Label" HorizontalAlignment="Left" Margin="169,118,0,0" VerticalAlignment="Top"/>
+        <Button Name="btn5" Canvas.Left="64" Canvas.Top="17" Width="129" Height="33" Click="btnAceptar_Click">
+            <StackPanel Orientation="Horizontal" Width="Auto">
+                <Image Source="C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\Menu\calabaza.png" Width="20" Height="20"/>
+                <TextBlock Text="Aceptar" TextAlignment="Right" VerticalAlignment="Center" Width="69"/>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>

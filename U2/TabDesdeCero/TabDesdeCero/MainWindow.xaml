@@ -1,0 +1,36 @@
+﻿<Window x:Class="TabDesdeCero.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TabDesdeCero"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="INGREDIA" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,50" Background="#FFFFD563" />
+        </Grid>
+        <TabControl TabStripPlacement="Left" Margin="0,53,0,42">
+            <TabItem Header="Empresas">
+                <TabControl  TabStripPlacement="Top">
+                    <TabItem Header="Lista de la compra"/>
+                    <TabItem Header="Inventario"/>
+                    <TabItem Header="Recetas guardadas"/>
+                </TabControl>
+            </TabItem>
+            <TabItem Header="Particulares">
+                <TabControl Height="428">
+                    <TabItem Header="Restaurantes"/>
+                    <TabItem Header="Recetas Guardadas"/>
+                    <TabItem Header="Inventario"/>
+
+                </TabControl>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
