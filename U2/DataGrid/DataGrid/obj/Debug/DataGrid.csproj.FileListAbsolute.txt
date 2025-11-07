@@ -1,0 +1,16 @@
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\DataGrid.csproj.AssemblyReference.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\view\MainWindow.g.cs
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\App.g.cs
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\DataGrid_MarkupCompile.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\DataGrid_MarkupCompile.lref
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\bin\Debug\DataGrid.exe.config
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\bin\Debug\DataGrid.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\bin\Debug\DataGrid.pdb
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\view\MainWindow.baml
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\DataGrid.g.resources
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\DataGrid.Properties.Resources.resources
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\DataGrid.csproj.GenerateResource.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\DataGrid.csproj.CoreCompileInputs.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\DataGrid.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\DataGrid.pdb
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DataGrid\DataGrid\obj\Debug\DataGrid.exe.config
