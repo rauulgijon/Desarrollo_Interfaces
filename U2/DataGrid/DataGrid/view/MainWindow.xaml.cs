@@ -21,15 +21,15 @@ namespace DataGrid.view
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Persona> lstPersona;
-        private Persona persona;
+        private List<Alumnado> lstPersona;
+        private Alumnado alumnado;
 
         public MainWindow()
         {
             InitializeComponent();
-            lstPersona = new List<Persona>();
-            persona = new Persona();
-            lstPersona = persona.getPersonas();
+            lstPersona = new List<Alumnado>();
+            alumnado = new Alumnado();
+            lstPersona = alumnado.getAlumnado();
             dvgPersonas.ItemsSource = lstPersona;
         }
 
@@ -37,12 +37,12 @@ namespace DataGrid.view
         {
             txtNombre.Text = "";
             txtApellido.Text = "";
-            txtEdad.Text = "";
+            txtCurso.Text = "";
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            lstPersona.Remove((Persona)dvgPersonas.SelectedItem);
+            lstPersona.Remove((Alumnado)dvgPersonas.SelectedItem);
             dvgPersonas.Items.Clear();
             start();
         }
@@ -51,14 +51,14 @@ namespace DataGrid.view
         {
             if(btnModificar.IsEnabled == false)
             {
-                lstPersona.Remove((Persona)dvgPersonas.SelectedItem);
+                lstPersona.Remove((Alumnado)dvgPersonas.SelectedItem);
                 dvgPersonas.Items.Refresh();
-                lstPersona.Add(new Persona(txtNombre.Text, txtApellido.Text, int.Parse(txtEdad.Text)));
+                lstPersona.Add(new Alumnado(txtNombre.Text, txtApellido.Text, int.Parse(txtCurso.Text)));
                 dvgPersonas.Items.Refresh();
                 txtApellido.Clear();
                 
             }
-            Persona persona = new Persona(txtNombre.Text, txtApellido.Text, int.Parse(txtEdad.Text));
+            Alumnado persona = new Alumnado(txtNombre.Text, txtApellido.Text, int.Parse(txtCurso.Text));
             lstPersona.Add(persona);
             dvgPersonas.Items.Refresh();
             start();
@@ -66,10 +66,10 @@ namespace DataGrid.view
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
-            Persona persona = (Persona)dvgPersonas.SelectedItem;
+            Alumnado persona = (Alumnado)dvgPersonas.SelectedItem;
             persona.Nombre = txtNombre.Text;
             persona.Apellido = txtApellido.Text;
-            persona.Edad = int.Parse(txtEdad.Text);
+            persona.Curso = int.Parse(txtCurso.Text);
 
             btnModificar.IsEnabled = false;
             btnEliminar.IsEnabled = false;

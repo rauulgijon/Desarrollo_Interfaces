@@ -1,0 +1,93 @@
+﻿<Window x:Class="DatagridPersonas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DatagridPersonas"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="3.5*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblBanner" Content="¿ACEPTAS EL RETO?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
+        <TabControl Grid.Row="1" TabStripPlacement="Left">
+            <TabItem Header="INICIO" Padding="15">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="PARTICIPANTES" Padding="15">
+                <TabControl TabStripPlacement="Top">
+                    <TabItem Header="ALUMNADO" >
+                        <Grid Background="#FFE5E5E5" Height="379">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+
+                            </Grid.RowDefinitions>
+                            <Grid Margin="0,247,0,48" Grid.RowSpan="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="68*"/>
+                                    <ColumnDefinition Width="68*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                    
+                                    <ColumnDefinition Width="68*"/>
+                                    <ColumnDefinition Width="68*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image x:Name="imgLogo" Grid.ColumnSpan="2" Margin="0,0,135,44" />
+                                <Button x:Name="btnAgregar" Grid.Column="2" Content="Agregar" Width="100" Height="30" Margin="18,26,0,27" Click="btnAgregar_Click"/>
+                                <Button x:Name="btnModificar" Grid.Column="3" Content="Modificar" Width="100" Margin="18,26,18,27" Height="30" Click="btnModificar_Click"/>
+                                <Button x:Name="btnEliminar" Grid.Column="5" Content="Eliminar" Width="100" Margin="18,26,18,27" Height="30" Click="btnEliminar_Click"/>
+
+                            </Grid>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+
+                                <StackPanel Grid.Column="1" Margin="10">
+                                    <Label x:Name="lblAlumnado" Content="Alumnado" HorizontalAlignment="Center" FontSize="20"/>
+                                    <Label x:Name="lblNombre" Content="Nombre"/>
+                                    <TextBox x:Name="txtNombre" Width="120"/>
+                                    <Label x:Name="lblApellido" Content="Apellido" Margin="0,25,0,0"/>
+                                    <TextBox x:Name="txtApellido" Width="120"/>
+                                    <Label x:Name="lblEdad" Content="Curso" VerticalAlignment="Bottom" Margin="0,25,0,0"/>
+                                    <TextBox x:Name="txtCurso" Width="120"/>
+                                </StackPanel>
+                                
+                                <DataGrid x:Name="dvgPersonas" Grid.Column="0" AutoGenerateColumns="False" Margin="10" SelectionChanged="dvgPersonas_SelectionChanged">
+                                    
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}"/>
+                                        <DataGridTextColumn Header="Apellido" Binding="{Binding Apellido}"/>
+                                        <DataGridTextColumn Header="Curso" Binding="{Binding Curso}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="GRUPOS">
+                        
+                    </TabItem>
+                
+            </TabControl>
+
+            </TabItem>
+            <TabItem Header="EMPRESAS" Padding="15">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="RETOS" Padding="15">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TALENT LAB" Padding="15">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="USUARIOS" Padding="15">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Window>
