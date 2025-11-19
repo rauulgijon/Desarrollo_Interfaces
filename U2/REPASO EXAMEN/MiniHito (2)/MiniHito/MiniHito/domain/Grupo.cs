@@ -1,4 +1,4 @@
-﻿using MiniHito.persistence;
+using MiniHito.persistence;
 using System;
 
 namespace MiniHito.domain
@@ -24,7 +24,7 @@ namespace MiniHito.domain
             pm = new GrupoPersistence();
         }
 
-        // Métodos que llaman a la persistencia
+        // M�todos que llaman a la persistencia
         public void Insertar() => pm.InsertarGrupo(this);
         public void Actualizar() => pm.ActualizarGrupo(this);
         public void Eliminar() => pm.EliminarGrupo(this.Id);

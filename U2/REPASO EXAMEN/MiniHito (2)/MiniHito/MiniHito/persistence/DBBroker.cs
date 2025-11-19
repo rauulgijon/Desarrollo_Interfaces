@@ -1,73 +1,100 @@
 ﻿using System;
 using System.Collections.Generic;
+using MySql.Data.MySqlClient; // Asegúrate de tener esta referencia
 
 namespace ExampleMVCnoDatabase.Persistence
 {
     public class DBBroker
     {
         private static DBBroker _instancia;
-        private static MySql.Data.MySqlClient.MySqlConnection conexion;
+        private static MySqlConnection conexion;
+
+        // --- OJO AQUÍ: CAMBIA LA CONTRASEÑA (pwd) SI LA TUYA NO ES 'toor' ---
         private const String cadenaConexion = "server=localhost;database=AceptasReto;uid=root;pwd=toor";
 
         private DBBroker()
         {
-            DBBroker.conexion = new MySql.Data.MySqlClient.MySqlConnection(DBBroker.cadenaConexion);
-
+            conexion = new MySqlConnection(cadenaConexion);
         }
 
         public static DBBroker obtenerAgente()
         {
-            if (DBBroker._instancia == null)
+            if (_instancia == null)
             {
-                DBBroker._instancia = new DBBroker();
+                _instancia = new DBBroker();
             }
-            return DBBroker._instancia;
+            return _instancia;
         }
 
         public List<Object> leer(String sql)
         {
             List<Object> resultado = new List<object>();
-            List<Object> fila;
-            int i;
-            MySql.Data.MySqlClient.MySqlDataReader reader;
-            MySql.Data.MySqlClient.MySqlCommand com = new MySql.Data.MySqlClient.MySqlCommand(sql, DBBroker.conexion);
 
-            conectar();
-            reader = com.ExecuteReader();
-            while (reader.Read())
+            // Usamos un bloque try-catch para conectar
+            try
             {
-                fila = new List<object>();
-                for (i = 0; i <= reader.FieldCount - 1; i++)
-                {
-                    fila.Add(reader[i].ToString());
+                conectar();
+                MySqlCommand com = new MySqlCommand(sql, conexion);
+                MySqlDataReader reader = com.ExecuteReader();
 
+                while (reader.Read())
+                {
+                    List<Object> fila = new List<object>();
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        fila.Add(reader[i].ToString());
+                    }
+                    resultado.Add(fila);
                 }
-                resultado.Add(fila);
+                reader.Close(); // Importante cerrar el reader
             }
-            desconectar();
+            catch (Exception ex)
+            {
+                // Esto te avisará si falla la conexión al leer
+                System.Windows.MessageBox.Show("Error SQL (Leer): " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
             return resultado;
         }
+
         public int modificar(String sql)
         {
-            MySql.Data.MySqlClient.MySqlCommand com = new MySql.Data.MySqlClient.MySqlCommand(sql, DBBroker.conexion);
-            int resultado;
-            conectar();
-            resultado = com.ExecuteNonQuery();
-            desconectar();
-            return resultado;
+            int filas = 0;
+            try
+            {
+                conectar();
+                MySqlCommand com = new MySqlCommand(sql, conexion);
+                filas = com.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Esto te avisará si falla la conexión al guardar/borrar
+                System.Windows.MessageBox.Show("Error SQL (Modificar): " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+            return filas;
         }
+
         private void conectar()
         {
-            if (DBBroker.conexion.State == System.Data.ConnectionState.Closed)
+            if (conexion.State == System.Data.ConnectionState.Closed)
             {
-                DBBroker.conexion.Open();
+                conexion.Open();
             }
         }
+
         private void desconectar()
         {
-            if (DBBroker.conexion.State == System.Data.ConnectionState.Open)
+            if (conexion.State == System.Data.ConnectionState.Open)
             {
-                DBBroker.conexion.Close();
+                conexion.Close();
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using MiniHito.persistence;
+using MiniHito.persistence;
 using System;
 using System.Collections.Generic;
 
@@ -38,7 +38,7 @@ namespace MiniHito.domain
             am = new AlumnoPersistence();
         }
 
-        // Constructor compatible con tu código anterior (asigna grupo 0)
+        // Constructor compatible con tu c�digo anterior (asigna grupo 0)
         public Alumno(int id, String nombre, String apellidos, int especialidad)
         {
             Id = id;
