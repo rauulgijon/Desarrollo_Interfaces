@@ -1,0 +1,16 @@
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\bin\Debug\Minihito1.exe.config
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\bin\Debug\Minihito1.exe
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\bin\Debug\Minihito1.pdb
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\obj\Debug\Minihito1.csproj.AssemblyReference.cache
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\obj\Debug\Minihito1.csproj.CoreCompileInputs.cache
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\obj\Debug\Minihito1.exe
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\obj\Debug\Minihito1.pdb
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\obj\Debug\Minihito1.exe.config
+C:\Users\Usuario\Documents\GitHub\Desarrollo_Interfaces\U1\Rueda_Nieves_Ruben_Minihito1\Minihito1\Minihito1\bin\Debug\Minihito1.exe.config
+C:\Users\Usuario\Documents\GitHub\Desarrollo_Interfaces\U1\Rueda_Nieves_Ruben_Minihito1\Minihito1\Minihito1\bin\Debug\Minihito1.exe
+C:\Users\Usuario\Documents\GitHub\Desarrollo_Interfaces\U1\Rueda_Nieves_Ruben_Minihito1\Minihito1\Minihito1\bin\Debug\Minihito1.pdb
+C:\Users\Usuario\Documents\GitHub\Desarrollo_Interfaces\U1\Rueda_Nieves_Ruben_Minihito1\Minihito1\Minihito1\obj\Debug\Minihito1.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\Desarrollo_Interfaces\U1\Rueda_Nieves_Ruben_Minihito1\Minihito1\Minihito1\obj\Debug\Minihito1.exe.config
+C:\Users\Usuario\Documents\GitHub\Desarrollo_Interfaces\U1\Rueda_Nieves_Ruben_Minihito1\Minihito1\Minihito1\obj\Debug\Minihito1.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\Desarrollo_Interfaces\U1\Rueda_Nieves_Ruben_Minihito1\Minihito1\Minihito1\obj\Debug\Minihito1.exe
+C:\Users\Usuario\Documents\GitHub\Desarrollo_Interfaces\U1\Rueda_Nieves_Ruben_Minihito1\Minihito1\Minihito1\obj\Debug\Minihito1.pdb
