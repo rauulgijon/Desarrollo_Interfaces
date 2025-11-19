@@ -19,17 +19,17 @@ namespace DataGrid.personapersistence
 
         // Simulacion lectura de base de datos
         
-        public static List<Alumnado> leerAlumnado()
+        public static List<Persona> leerPersonas()
         {
-            List<Alumnado> personas = new List<Alumnado>();
-            personas.Add(new Alumnado("Manuel", "Ruiz", 19));
-            personas.Add(new Alumnado("Ismael", "Navarro", 20));
-            personas.Add(new Alumnado("Ruben", "Rueda", 21));
-            personas.Add(new Alumnado("Raul", "Gijon", 19));
-            personas.Add(new Alumnado("Gabriel", "Hernandez", 21));
-            personas.Add(new Alumnado("Asier", "Carretero", 21));
-            personas.Add(new Alumnado("Adrian", "Luque", 19));
-            personas.Add(new Alumnado("Manuel Alejandro", "Garcia", 24));
+            List<Persona> personas = new List<Persona>();
+            personas.Add(new Persona("Manuel", "Ruiz", 19));
+            personas.Add(new Persona("Ismael", "Navarro", 20));
+            personas.Add(new Persona("Ruben", "Rueda", 21));
+            personas.Add(new Persona("Raul", "Gijon", 19));
+            personas.Add(new Persona("Gabriel", "Hernandez", 21));
+            personas.Add(new Persona("Asier", "Carretero", 21));
+            personas.Add(new Persona("Adrian", "Luque", 19));
+            personas.Add(new Persona("Manuel Alejandro", "Garcia", 24));
             return personas;
         }
     }

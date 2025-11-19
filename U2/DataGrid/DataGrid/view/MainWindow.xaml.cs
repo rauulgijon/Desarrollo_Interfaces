@@ -21,15 +21,15 @@ namespace DataGrid.view
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Alumnado> lstPersona;
-        private Alumnado alumnado;
+        private List<Persona> lstPersona;
+        private Persona alumnado;
 
         public MainWindow()
         {
             InitializeComponent();
-            lstPersona = new List<Alumnado>();
-            alumnado = new Alumnado();
-            lstPersona = alumnado.getAlumnado();
+            lstPersona = new List<Persona>();
+            alumnado = new Persona();
+            lstPersona = alumnado.getPersonas();
             dvgPersonas.ItemsSource = lstPersona;
         }
 
@@ -42,7 +42,7 @@ namespace DataGrid.view
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            lstPersona.Remove((Alumnado)dvgPersonas.SelectedItem);
+            lstPersona.Remove((Persona)dvgPersonas.SelectedItem);
             dvgPersonas.Items.Clear();
             start();
         }
@@ -51,14 +51,14 @@ namespace DataGrid.view
         {
             if(btnModificar.IsEnabled == false)
             {
-                lstPersona.Remove((Alumnado)dvgPersonas.SelectedItem);
+                lstPersona.Remove((Persona)dvgPersonas.SelectedItem);
                 dvgPersonas.Items.Refresh();
-                lstPersona.Add(new Alumnado(txtNombre.Text, txtApellido.Text, int.Parse(txtCurso.Text)));
+                lstPersona.Add(new Persona(txtNombre.Text, txtApellido.Text, int.Parse(txtCurso.Text)));
                 dvgPersonas.Items.Refresh();
                 txtApellido.Clear();
                 
             }
-            Alumnado persona = new Alumnado(txtNombre.Text, txtApellido.Text, int.Parse(txtCurso.Text));
+            Persona persona = new Persona(txtNombre.Text, txtApellido.Text, int.Parse(txtCurso.Text));
             lstPersona.Add(persona);
             dvgPersonas.Items.Refresh();
             start();
@@ -66,10 +66,10 @@ namespace DataGrid.view
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
-            Alumnado persona = (Alumnado)dvgPersonas.SelectedItem;
+            Persona persona = (Persona)dvgPersonas.SelectedItem;
             persona.Nombre = txtNombre.Text;
             persona.Apellido = txtApellido.Text;
-            persona.Curso = int.Parse(txtCurso.Text);
+            persona.Edad = int.Parse(txtCurso.Text);
 
             btnModificar.IsEnabled = false;
             btnEliminar.IsEnabled = false;

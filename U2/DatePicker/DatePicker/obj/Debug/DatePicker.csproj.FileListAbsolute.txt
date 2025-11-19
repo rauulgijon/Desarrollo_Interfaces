@@ -1,0 +1,15 @@
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\DatePicker.csproj.AssemblyReference.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\MainWindow.g.cs
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\App.g.cs
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\DatePicker_MarkupCompile.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\DatePicker_MarkupCompile.lref
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\bin\Debug\DatePicker.exe.config
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\bin\Debug\DatePicker.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\bin\Debug\DatePicker.pdb
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\MainWindow.baml
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\DatePicker.g.resources
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\DatePicker.Properties.Resources.resources
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\DatePicker.csproj.GenerateResource.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\DatePicker.csproj.CoreCompileInputs.cache
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\DatePicker.exe
+C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\DatePicker\DatePicker\obj\Debug\DatePicker.pdb
