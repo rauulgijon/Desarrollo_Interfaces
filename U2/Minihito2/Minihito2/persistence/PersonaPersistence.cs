@@ -54,8 +54,8 @@ namespace DatagridPersonas.persistence
 
         public void insertarPersona(Alumnado alumno)
         {
-            DBBroker.obtenerAgente().modificar("INSERT INTO aceptasreto.alumnado (idAlumnado, nombre, apellidos, curso)" +
-                                                "VALUES (" + alumno.Id + ",'" + alumno.Nombre + "', '" + alumno.Apellido + "'," + alumno.Curso + ");");
+            DBBroker.obtenerAgente().modificar("INSERT INTO aceptasreto.alumnado (nombre, apellidos, curso)" +
+                                                "VALUES ('" + alumno.Nombre + "', '" + alumno.Apellido + "'," + alumno.Curso + ");");
         }
 
         public void lastId(Alumnado p)
