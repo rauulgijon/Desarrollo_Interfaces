@@ -1,9 +1,10 @@
-﻿<Application x:Class="DatagridPersonas.App"
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application x:Class="DatagridPersonas.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DatagridPersonas"
-             StartupUri="view/MainWindow.xaml">
+             StartupUri="view/LoginWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>
