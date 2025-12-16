@@ -10,7 +10,7 @@ namespace ExampleMVCnoDatabase.Persistence
         private static MySqlConnection conexion;
 
         // --- OJO AQUÍ: CAMBIA LA CONTRASEÑA (pwd) SI LA TUYA NO ES 'toor' ---
-        private const String cadenaConexion = "server=localhost;database=AceptasReto;uid=root;pwd=toor";
+        private const String cadenaConexion = "server=localhost;database=aceptasreto;uid=root;pwd=toor";
 
         private DBBroker()
         {
