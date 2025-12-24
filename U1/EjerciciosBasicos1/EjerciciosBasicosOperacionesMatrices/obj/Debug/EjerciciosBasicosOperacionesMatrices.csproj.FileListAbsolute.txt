@@ -1,8 +1,0 @@
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\EjerciciosBasicosOperacionesMatrices\bin\Debug\EjerciciosBasicosOperacionesMatrices.exe.config
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\EjerciciosBasicosOperacionesMatrices\bin\Debug\EjerciciosBasicosOperacionesMatrices.exe
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\EjerciciosBasicosOperacionesMatrices\bin\Debug\EjerciciosBasicosOperacionesMatrices.pdb
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\EjerciciosBasicosOperacionesMatrices\obj\Debug\EjerciciosBasicosOperacionesMatrices.csproj.AssemblyReference.cache
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\EjerciciosBasicosOperacionesMatrices\obj\Debug\EjerciciosBasicosOperacionesMatrices.csproj.CoreCompileInputs.cache
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\EjerciciosBasicosOperacionesMatrices\obj\Debug\EjerciciosBasicosOperacionesMatrices.exe
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\EjerciciosBasicosOperacionesMatrices\obj\Debug\EjerciciosBasicosOperacionesMatrices.pdb
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosBasicos1\EjerciciosBasicosOperacionesMatrices\obj\Debug\EjerciciosBasicosOperacionesMatrices.exe.config

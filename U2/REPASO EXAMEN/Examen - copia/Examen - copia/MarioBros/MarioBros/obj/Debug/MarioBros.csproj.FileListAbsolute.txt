@@ -1,8 +1,0 @@
-C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 1\MarioBros\MarioBros\obj\Debug\MarioBros.csproj.AssemblyReference.cache
-C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 1\MarioBros\MarioBros\obj\Debug\MarioBros.csproj.CoreCompileInputs.cache
-C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 1\MarioBros\MarioBros\bin\Debug\MarioBros.exe.config
-C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 1\MarioBros\MarioBros\bin\Debug\MarioBros.exe
-C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 1\MarioBros\MarioBros\bin\Debug\MarioBros.pdb
-C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 1\MarioBros\MarioBros\obj\Debug\MarioBros.exe
-C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 1\MarioBros\MarioBros\obj\Debug\MarioBros.pdb
-C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 1\MarioBros\MarioBros\obj\Debug\MarioBros.exe.config

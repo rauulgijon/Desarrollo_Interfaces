@@ -1,8 +1,0 @@
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\ejercicios1\ejercicios1\bin\Debug\ejercicios1.exe.config
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\ejercicios1\ejercicios1\bin\Debug\ejercicios1.exe
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\ejercicios1\ejercicios1\bin\Debug\ejercicios1.pdb
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\ejercicios1\ejercicios1\obj\Debug\ejercicios1.csproj.AssemblyReference.cache
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\ejercicios1\ejercicios1\obj\Debug\ejercicios1.csproj.CoreCompileInputs.cache
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\ejercicios1\ejercicios1\obj\Debug\ejercicios1.exe
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\ejercicios1\ejercicios1\obj\Debug\ejercicios1.pdb
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\ejercicios1\ejercicios1\obj\Debug\ejercicios1.exe.config

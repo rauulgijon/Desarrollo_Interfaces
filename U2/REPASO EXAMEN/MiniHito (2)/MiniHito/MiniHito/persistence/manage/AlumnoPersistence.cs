@@ -21,7 +21,11 @@ namespace MiniHito.persistence
             List<Alumno> personas = new List<Alumno>();
             try
             {
+<<<<<<< HEAD
                 List<Object> aux = DBBroker.obtenerAgente().leer("SELECT * FROM AceptasReto.alumnado;");
+=======
+                List<Object> aux = DBBroker.obtenerAgente().leer("SELECT * FROM aceptasreto.alumnado;");
+>>>>>>> c74427af33eaaa8c2592c24ba51e07f593c2c5b8
 
                 foreach (List<Object> fila in aux)
                 {
@@ -54,7 +58,11 @@ namespace MiniHito.persistence
             try
             {
                 // CORREGIDO: Usamos 'grupo' (tu columna real) en vez de 'idgrupo'
+<<<<<<< HEAD
                 string sql = "INSERT INTO AceptasReto.alumnado (nombre, apellidos, especialidad, grupo) VALUES ('" +
+=======
+                string sql = "INSERT INTO aceptasreto.alumnado (nombre, apellidos, especialidad, grupo) VALUES ('" +
+>>>>>>> c74427af33eaaa8c2592c24ba51e07f593c2c5b8
                              alumno.Nombre + "', '" +
                              alumno.Apellidos + "', " +
                              alumno.Especialidad + ", " +
@@ -70,7 +78,11 @@ namespace MiniHito.persistence
             try
             {
                 // CORREGIDO: Usamos 'grupo' en vez de 'idgrupo'
+<<<<<<< HEAD
                 string sql = "UPDATE AceptasReto.alumnado SET " +
+=======
+                string sql = "UPDATE aceptasreto.alumnado SET " +
+>>>>>>> c74427af33eaaa8c2592c24ba51e07f593c2c5b8
                              "nombre = '" + alumno.Nombre + "', " +
                              "apellidos = '" + alumno.Apellidos + "', " +
                              "especialidad = " + alumno.Especialidad + ", " +
@@ -86,7 +98,11 @@ namespace MiniHito.persistence
         {
             try
             {
+<<<<<<< HEAD
                 string sql = "DELETE FROM AceptasReto.alumnado WHERE idAlumnado = " + id + ";";
+=======
+                string sql = "DELETE FROM aceptasreto.alumnado WHERE idAlumnado = " + id + ";";
+>>>>>>> c74427af33eaaa8c2592c24ba51e07f593c2c5b8
                 DBBroker.obtenerAgente().modificar(sql);
             }
             catch (Exception ex) { MessageBox.Show("Error eliminando alumno: " + ex.Message); }

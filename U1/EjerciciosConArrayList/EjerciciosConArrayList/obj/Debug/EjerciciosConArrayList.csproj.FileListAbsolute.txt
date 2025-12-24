@@ -1,7 +1,0 @@
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosConArrayList\EjerciciosConArrayList\bin\Debug\EjerciciosConArrayList.exe.config
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosConArrayList\EjerciciosConArrayList\bin\Debug\EjerciciosConArrayList.exe
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosConArrayList\EjerciciosConArrayList\bin\Debug\EjerciciosConArrayList.pdb
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosConArrayList\EjerciciosConArrayList\obj\Debug\EjerciciosConArrayList.csproj.AssemblyReference.cache
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosConArrayList\EjerciciosConArrayList\obj\Debug\EjerciciosConArrayList.csproj.CoreCompileInputs.cache
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosConArrayList\EjerciciosConArrayList\obj\Debug\EjerciciosConArrayList.exe
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\U1\Desarrollo_Interfaces\EjerciciosConArrayList\EjerciciosConArrayList\obj\Debug\EjerciciosConArrayList.pdb

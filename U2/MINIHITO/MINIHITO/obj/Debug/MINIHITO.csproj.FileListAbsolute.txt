@@ -1,8 +1,0 @@
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\MINIHITO\MINIHITO\bin\Debug\MINIHITO.exe.config
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\MINIHITO\MINIHITO\bin\Debug\MINIHITO.exe
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\MINIHITO\MINIHITO\bin\Debug\MINIHITO.pdb
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\MINIHITO\MINIHITO\obj\Debug\MINIHITO.csproj.AssemblyReference.cache
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\MINIHITO\MINIHITO\obj\Debug\MINIHITO.csproj.CoreCompileInputs.cache
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\MINIHITO\MINIHITO\obj\Debug\MINIHITO.exe
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\MINIHITO\MINIHITO\obj\Debug\MINIHITO.pdb
-C:\Users\b15-02m\Documents\CFGS\DESARROLLO DE INTERFACES\Desarrollo_Interfaces\U2\MINIHITO\MINIHITO\obj\Debug\MINIHITO.exe.config
