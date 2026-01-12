@@ -1,0 +1,10 @@
+
+<Window x:Class="FinalActivity.Wpf_MVC.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Actividad final — Consumo de API" Height="420" Width="640">
+    <StackPanel Margin="20">
+        <Button Content="Cargar datos" Click="Button_Click" Margin="0,0,0,10" />
+        <ListBox x:Name="ObjectsList" DisplayMemberPath="name" />
+    </StackPanel>
+</Window>
