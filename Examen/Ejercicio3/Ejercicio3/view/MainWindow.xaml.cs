@@ -29,6 +29,9 @@ namespace Ejercicio3
 
         // Variables para la serpiente
         private List<Point> serpiente = new List<Point>();
+        private List<Point> listaParedes = new List<Point>();
+        private List<Point> listaRatones = new List<Point>();
+        private Random random = new Random();
         private int longitudSerpiente = 4; // Puedes cambiar la longitud
 
 
@@ -38,10 +41,16 @@ namespace Ejercicio3
             lsPersonas = new ObservableCollection<Jugador>();
             persona = new Jugador();
             cargarPersonas();
-            fillGrid();
+
+            // Configuración inicial de la UI
             start();
+
+            // 1. Generamos los datos de la serpiente (rellena la lista 'serpiente')
             GenerarSerpiente();
 
+            // 2. ¡IMPORTANTE! Pintamos la serpiente en la pantalla.
+            // Antes llamabas a fillGrid(), que solo pinta el fondo.
+            PintarTableroCompleto();
         }
         public void fillGrid()
         {
@@ -77,14 +86,21 @@ namespace Ejercicio3
 
         public void start()
         {
+            // Limpieza de campos del formulario
             txtNombre.Text = "";
             txtFecha.Text = "";
             txtPuntos.Text = "";
             datePickerFechaNacimiento.SelectedDate = null;
+
+            // Bloqueo de botones y selección
             btnModificar.IsEnabled = false;
             dataGridPersonas.SelectedItem = null;
             cmbNivel.SelectedItem = null;
-            btnModificar.IsEnabled = false; 
+
+            // --- CORRECCIÓN PARA LOS BOTONES ---
+            // Inicializamos las cajas de texto con "0" para que los botones + y - funcionen
+            txtNParedes.Text = "0";
+            txtRatones.Text = "0";
         }
 
         private void dataGridPersonas_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -221,60 +237,176 @@ namespace Ejercicio3
             }
         }
 
+
+
+        // Lógica para Paredes
         private void masParedes(object sender, RoutedEventArgs e)
         {
-            
+            if (int.TryParse(txtNParedes.Text, out int num))
+            {
+                txtNParedes.Text = (num + 1).ToString();
+            }
+        }
+
+        private void menosParedes(object sender, RoutedEventArgs e)
+        {
+            if (int.TryParse(txtNParedes.Text, out int num))
+            {
+                if (num > 0) txtNParedes.Text = (num - 1).ToString();
+            }
+        }
+
+        // Lógica para Ratones
+        private void masRatones(object sender, RoutedEventArgs e)
+        {
+            // OJO: En tu XAML el cuadro se llama txtNatones
+            if (int.TryParse(txtRatones.Text, out int num))
+            {
+                txtRatones.Text = (num + 1).ToString();
+            }
+        }
+
+        private void menosRatones(object sender, RoutedEventArgs e)
+        {
+            if (int.TryParse(txtRatones.Text, out int num))
+            {
+                if (num > 0) txtRatones.Text = (num - 1).ToString();
+            }
+        }
+
+        private void iniciarJuego(object sender, RoutedEventArgs e)
+        {
+            // 1. Validaciones básicas
+            if (string.IsNullOrWhiteSpace(txtNickJugador.Text))
+            {
+                MessageBox.Show("Por favor, introduce un Nick para jugar.");
+                return;
+            }
+
+            // 2. Añadir jugador a la tabla (SOLO EN MEMORIA, SIN BDD)
+            // Creamos un jugador con puntuación 0 y fecha actual
+            Jugador jugadorActual = new Jugador(txtNickJugador.Text, 0, DateTime.Now.ToString("yyyy-MM-dd"), 1);
+
+            // Lo añadimos a la colección observable para que aparezca en el DataGrid automáticamente
+            lsPersonas.Add(jugadorActual);
+
+            // 3. Preparar el Tablero
+            int nParedes = 0;
+            int nRatones = 0;
+            int.TryParse(txtNParedes.Text, out nParedes);
+            int.TryParse(txtRatones.Text, out nRatones);
+
+            // Generamos la serpiente (reinicia posición), paredes y ratones
+            GenerarSerpiente();
+            GenerarObstaculosYRatones(nParedes, nRatones);
+
+            // Pintamos todo
+            PintarTableroCompleto();
+
+            MessageBox.Show($"Juego iniciado para {jugadorActual.Nombre} con {nParedes} paredes y {nRatones} ratones.");
+        }
+
+        private void GenerarObstaculosYRatones(int numParedes, int numRatones)
+        {
+            listaParedes.Clear();
+            listaRatones.Clear();
+
+            // Generar Paredes
+            for (int i = 0; i < numParedes; i++)
+            {
+                Point p = ObtenerPosicionVacia();
+                if (p != new Point(-1, -1)) listaParedes.Add(p);
+            }
+
+            // Generar Ratones
+            for (int i = 0; i < numRatones; i++)
+            {
+                Point p = ObtenerPosicionVacia();
+                if (p != new Point(-1, -1)) listaRatones.Add(p);
+            }
+        }
+
+        private Point ObtenerPosicionVacia()
+        {
+            // Intenta buscar una posición libre (que no sea serpiente, ni pared, ni ratón)
+            // NOTA: El Grid es de 6x6 según tu método fillGrid()
+            int maxIntentos = 50;
+            for (int i = 0; i < maxIntentos; i++)
+            {
+                int x = random.Next(0, 6);
+                int y = random.Next(0, 6);
+                Point p = new Point(x, y);
+
+                // Comprobamos que no choque con nada
+                if (!serpiente.Contains(p) && !listaParedes.Contains(p) && !listaRatones.Contains(p))
+                {
+                    return p;
+                }
+            }
+            return new Point(-1, -1); // No encontró sitio
         }
 
         private void GenerarSerpiente()
         {
             serpiente.Clear();
-            int filaInicial = 2; 
+            int filaInicial = 2;
             int columnaInicial = 0;
 
             for (int i = 0; i < longitudSerpiente; i++)
             {
+                // OJO: Añadimos puntos a la lista 'serpiente' pero NO pintamos aquí.
+                // Ya pintamos todo junto en PintarTableroCompleto() después.
                 serpiente.Add(new Point(columnaInicial + i, filaInicial));
             }
-
-            PintarSerpiente();
-        }
-        
-        private void GenerarRatones()
-        {
-
         }
 
-        private void PintarSerpiente()
+        private void PintarTableroCompleto()
         {
             GridTable.Children.Clear();
-            fillGrid(); // Dibuja el fondo
+            fillGrid(); // Dibuja el fondo y coordenadas
 
+            // 1. Pintar Serpiente (Verde)
             foreach (var punto in serpiente)
             {
-                Label lbl = new Label
-                {
-                    Content = "S",
-                    Background = Brushes.Green,
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    VerticalAlignment = VerticalAlignment.Stretch
-                };
-                Grid.SetRow(lbl, (int)punto.Y);
-                Grid.SetColumn(lbl, (int)punto.X);
-                GridTable.Children.Add(lbl);
+                PintarCelda(punto, Brushes.Green, "S");
+            }
+
+            // 2. Pintar Paredes (Gris o Negro)
+            foreach (var punto in listaParedes)
+            {
+                PintarCelda(punto, Brushes.Gray, "X");
+            }
+
+            // 3. Pintar Ratones (Rojo o Naranja)
+            foreach (var punto in listaRatones)
+            {
+                PintarCelda(punto, Brushes.OrangeRed, "R");
             }
         }
 
-        private void btnGenerarSerpiente_Click(object sender, RoutedEventArgs e)
+        // Método auxiliar para no repetir código de Labels
+        private void PintarCelda(Point punto, Brush color, string contenido)
         {
-            GenerarSerpiente();
+            Label lbl = new Label
+            {
+                Content = contenido,
+                Background = color,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch,
+                HorizontalContentAlignment = HorizontalAlignment.Center,
+                VerticalContentAlignment = VerticalAlignment.Center,
+                FontWeight = FontWeights.Bold,
+                Foreground = Brushes.White
+            };
+            Grid.SetColumn(lbl, (int)punto.X);
+            Grid.SetRow(lbl, (int)punto.Y);
+            GridTable.Children.Add(lbl);
         }
 
-        private void menosParedes(object sender, RoutedEventArgs e)
-        {
 
-        }
-        
+
+
+
     }
 }
 

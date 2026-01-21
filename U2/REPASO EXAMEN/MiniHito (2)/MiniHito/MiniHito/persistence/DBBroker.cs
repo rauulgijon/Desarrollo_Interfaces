@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient; // Asegúrate de tener esta referencia
+using MySql.Data.MySqlClient;
 
 namespace ExampleMVCnoDatabase.Persistence
 {
@@ -9,12 +9,9 @@ namespace ExampleMVCnoDatabase.Persistence
         private static DBBroker _instancia;
         private static MySqlConnection conexion;
 
-        // --- OJO AQUÍ: CAMBIA LA CONTRASEÑA (pwd) SI LA TUYA NO ES 'toor' ---
-<<<<<<< HEAD
-        private const String cadenaConexion = "server=localhost;database=AceptasReto;uid=root;pwd=toor";
-=======
+        // SELECCIONA AQUÍ TU CADENA DE CONEXIÓN CORRECTA
+        // Si tu base de datos se llama 'aceptasreto':
         private const String cadenaConexion = "server=localhost;database=aceptasreto;uid=root;pwd=toor";
->>>>>>> c74427af33eaaa8c2592c24ba51e07f593c2c5b8
 
         private DBBroker()
         {
@@ -33,8 +30,6 @@ namespace ExampleMVCnoDatabase.Persistence
         public List<Object> leer(String sql)
         {
             List<Object> resultado = new List<object>();
-
-            // Usamos un bloque try-catch para conectar
             try
             {
                 conectar();
@@ -50,11 +45,10 @@ namespace ExampleMVCnoDatabase.Persistence
                     }
                     resultado.Add(fila);
                 }
-                reader.Close(); // Importante cerrar el reader
+                reader.Close();
             }
             catch (Exception ex)
             {
-                // Esto te avisará si falla la conexión al leer
                 System.Windows.MessageBox.Show("Error SQL (Leer): " + ex.Message);
             }
             finally
@@ -76,7 +70,6 @@ namespace ExampleMVCnoDatabase.Persistence
             }
             catch (Exception ex)
             {
-                // Esto te avisará si falla la conexión al guardar/borrar
                 System.Windows.MessageBox.Show("Error SQL (Modificar): " + ex.Message);
             }
             finally

@@ -39,7 +39,14 @@ namespace Ejercicio3.persistence
                              persona.Puntuacion + ", '" +
                              persona.Fechanac + "', " +
                              persona.Nivel + "); ";
-                int a = DBBroker.obtenerAgente().modificar(sql);
+
+                int filasAfectadas = DBBroker.obtenerAgente().modificar(sql);
+
+                // Si filasAfectadas es 0, significa que hubo un error o no se insertó nada
+                if (filasAfectadas == 0)
+                {
+                    throw new Exception("No se ha podido insertar el jugador en la base de datos.");
+                }
             }
 
             public void actualizarPersona(Jugador persona)
@@ -47,7 +54,7 @@ namespace Ejercicio3.persistence
                 string sql = "UPDATE serpiente.jugador SET " +
                              "nombre = '" + persona.Nombre + "', " +
                              "puntuacion = '" + persona.Puntuacion + "', " +
-                             "fecha = " + persona.Fechanac + ", " +
+                             "fecha = '" + persona.Fechanac + "', " +
                              "nivel = '" + persona.Nivel + "' " +
                              "WHERE idJugador = " + persona.Id + ";";
                 int a = DBBroker.obtenerAgente().modificar(sql);

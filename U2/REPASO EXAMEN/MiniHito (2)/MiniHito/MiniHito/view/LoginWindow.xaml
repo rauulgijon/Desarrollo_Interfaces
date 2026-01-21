@@ -1,0 +1,35 @@
+﻿<Window x:Class="MiniHito.view.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Acceso Usuario" 
+        SizeToContent="WidthAndHeight"
+        MinWidth="350" MinHeight="450"
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="CanResize"
+        Background="#ecf0f1">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Border Background="White" CornerRadius="10" Padding="30" Margin="20" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+                <Border.Effect>
+                    <DropShadowEffect Color="Gray" BlurRadius="20" ShadowDepth="5" Opacity="0.2"/>
+                </Border.Effect>
+
+                <StackPanel>
+                    <Label Content="BIENVENIDO" HorizontalAlignment="Center" FontSize="22" Foreground="#3498db" FontWeight="Bold" Margin="0,0,0,25"/>
+
+                    <Label Content="Usuario:"/>
+                    <TextBox x:Name="txtUsuario" />
+
+                    <Label Content="Contraseña:"/>
+                    <PasswordBox x:Name="txtPass" />
+
+                    <Button x:Name="btnLogin" Content="INICIAR SESIÓN" Click="btnLogin_Click" Height="45" Margin="0,15,0,5"/>
+
+                    <Button x:Name="btnSalir" Content="Salir" Background="#95a5a6" Click="btnSalir_Click" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Window>

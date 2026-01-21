@@ -56,16 +56,16 @@
 
                     <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Vertical" Margin="0,0,0,54">
                         <Label Name="lblNRatones" Content="Número de ratones" Grid.Row="1" Grid.Column="1" Margin="10,10,10,10"/>
-                        <TextBox Name="txtNatones" Grid.Row="1" Grid.Column="1" Margin="10,0,10,10"/>
+                        <TextBox Name="txtRatones" Grid.Row="1" Grid.Column="1" Margin="10,0,10,10"/>
 
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Vertical" Margin="10,10,10,10">
-                        <Button Name="btMasRatones" Content="+" Width="100" Margin="10,20,0,0" HorizontalAlignment="Left"/>
-                        <Button Name="btMenosRatones" Content="-" Width="100" Margin="10,10,10,10" HorizontalAlignment="Left"/>
+                        <Button Name="btMasRatones" Click="masRatones" Content="+" Width="100" Margin="10,20,0,0" HorizontalAlignment="Left"/>
+                        <Button Name="btMenosRatones" Click="menosRatones" Content="-" Width="100" Margin="10,10,10,10" HorizontalAlignment="Left"/>
 
 
                     </StackPanel>
-                    <Button Name="btnIniciarJuego" Content="Iniciar Juego" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,15" FontSize="15" Height="24" Width="87" Grid.ColumnSpan="2"/>
+                    <Button Name="btnIniciarJuego" Click="iniciarJuego" Content="Iniciar Juego" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,15" FontSize="15" Height="24" Width="87" Grid.ColumnSpan="2"/>
                     <Rectangle Grid.Column="1" Fill="Yellow" Grid.ColumnSpan="4" RadiusX="10" RadiusY="10"  Height="20" Grid.Row="1"/>
 
                     <Image Grid.Column="5" Margin="5,140,-2,10" Grid.Row="2" Source="/logotipo-ies-maestredecalatrava-1.png" Stretch="Fill"/>
@@ -120,7 +120,7 @@
                     <DataGrid x:Name="dataGridPersonas" Grid.Row="1" Grid.Column="0" Margin="10,10,10,10" MinWidth="300" SelectionChanged="dataGridPersonas_SelectionChanged" AutoGenerateColumns="False" Grid.ColumnSpan="4">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto" />
-                            <DataGridTextColumn Header="Fecha Juego" Binding="{Binding Fecha}" Width="auto" />
+                            <DataGridTextColumn Header="Fecha Juego" Binding="{Binding Fechanac}" Width="auto" />
                             <DataGridTextColumn Header="Nivel Jugador" Binding="{Binding Nivel}" Width="auto" />
                             <DataGridTextColumn Header="Puntuación Obtenida" Binding="{Binding Puntuacion}" Width="auto" />
 
