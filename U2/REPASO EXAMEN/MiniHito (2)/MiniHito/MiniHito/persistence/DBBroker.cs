@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+<<<<<<< Updated upstream
 using MySql.Data.MySqlClient;
+=======
+using MySql.Data.MySqlClient; // Asegúrate de tener esta referencia
+>>>>>>> Stashed changes
 
 namespace ExampleMVCnoDatabase.Persistence
 {
@@ -9,9 +13,14 @@ namespace ExampleMVCnoDatabase.Persistence
         private static DBBroker _instancia;
         private static MySqlConnection conexion;
 
+<<<<<<< Updated upstream
         // SELECCIONA AQUÍ TU CADENA DE CONEXIÓN CORRECTA
         // Si tu base de datos se llama 'aceptasreto':
         private const String cadenaConexion = "server=localhost;database=aceptasreto;uid=root;pwd=toor";
+=======
+        // --- OJO AQUÍ: CAMBIA LA CONTRASEÑA (pwd) SI LA TUYA NO ES 'toor' ---
+        private const String cadenaConexion = "server=localhost;database=AceptasReto;uid=root;pwd=toor";
+>>>>>>> Stashed changes
 
         private DBBroker()
         {
@@ -30,6 +39,11 @@ namespace ExampleMVCnoDatabase.Persistence
         public List<Object> leer(String sql)
         {
             List<Object> resultado = new List<object>();
+<<<<<<< Updated upstream
+=======
+
+            // Usamos un bloque try-catch para conectar
+>>>>>>> Stashed changes
             try
             {
                 conectar();
@@ -45,10 +59,18 @@ namespace ExampleMVCnoDatabase.Persistence
                     }
                     resultado.Add(fila);
                 }
+<<<<<<< Updated upstream
                 reader.Close();
             }
             catch (Exception ex)
             {
+=======
+                reader.Close(); // Importante cerrar el reader
+            }
+            catch (Exception ex)
+            {
+                // Esto te avisará si falla la conexión al leer
+>>>>>>> Stashed changes
                 System.Windows.MessageBox.Show("Error SQL (Leer): " + ex.Message);
             }
             finally
@@ -70,6 +92,10 @@ namespace ExampleMVCnoDatabase.Persistence
             }
             catch (Exception ex)
             {
+<<<<<<< Updated upstream
+=======
+                // Esto te avisará si falla la conexión al guardar/borrar
+>>>>>>> Stashed changes
                 System.Windows.MessageBox.Show("Error SQL (Modificar): " + ex.Message);
             }
             finally

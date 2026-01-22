@@ -1,0 +1,8 @@
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\bin\Debug\Minihito1.exe.config
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\bin\Debug\Minihito1.exe
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\bin\Debug\Minihito1.pdb
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\obj\Debug\Minihito1.csproj.AssemblyReference.cache
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\obj\Debug\Minihito1.csproj.CoreCompileInputs.cache
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\obj\Debug\Minihito1.exe
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\obj\Debug\Minihito1.pdb
+C:\Users\b15-03m\Documents\GitHub\DI\Visual\Minihito1\Minihito1\obj\Debug\Minihito1.exe.config

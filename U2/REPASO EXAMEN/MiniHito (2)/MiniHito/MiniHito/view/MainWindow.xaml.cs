@@ -11,6 +11,10 @@ namespace MiniHito
 {
     public partial class MainWindow : Window
     {
+<<<<<<< Updated upstream
+=======
+        // ---------------- VARIABLES GLOBALES ----------------
+>>>>>>> Stashed changes
 
         // Pestaña Alumnos
         ObservableCollection<Alumno> lsPersonas;
@@ -21,6 +25,7 @@ namespace MiniHito
         ObservableCollection<Alumno> alumnosSinGrupoOC;
         ObservableCollection<Alumno> alumnosEnGrupoOC;
 
+<<<<<<< Updated upstream
         //Empresas
         Empresa empresa;
         ObservableCollection<Empresa> lsEmpresa;
@@ -29,6 +34,8 @@ namespace MiniHito
         Reto reto;
         ObservableCollection<Reto> lsReto;
 
+=======
+>>>>>>> Stashed changes
         // Control de estado: ¿Estamos editando un grupo existente o creando uno nuevo?
         private Grupo grupoEnEdicion = null;
 
@@ -38,11 +45,15 @@ namespace MiniHito
 
             // Cargar pestaña 1
             lsPersonas = new ObservableCollection<Alumno>();
+<<<<<<< Updated upstream
             lsEmpresa = new ObservableCollection<Empresa>();
             alumno = new Alumno();
             empresa = new Empresa();
             reto = new Reto();
             lsReto = new ObservableCollection<Reto>();
+=======
+            alumno = new Alumno();
+>>>>>>> Stashed changes
             cargarPersonas();
 
             // Cargar pestaña 2 (Grupos) INICIALMENTE
@@ -50,7 +61,11 @@ namespace MiniHito
         }
 
         // =========================================================
+<<<<<<< Updated upstream
         // PESTAÑA 1: ALUMNADO 
+=======
+        // PESTAÑA 1: ALUMNADO (Tu código original)
+>>>>>>> Stashed changes
         // =========================================================
         private void cargarPersonas()
         {
@@ -64,8 +79,11 @@ namespace MiniHito
         {
             txtNombre.Text = ""; txtApellido.Text = ""; cmbCurso.SelectedItem = null;
             btnModificar.IsEnabled = false; dataGridPersonas.SelectedItem = null;
+<<<<<<< Updated upstream
             txtRazonSocial.Text = ""; txtDireccion.Text = ""; txtCiudad.Text = ""; txtTelefono.Text = ""; txtCorreo.Text = "";
             btnModificarEmpresa.IsEnabled = false; dataGridEmpresa.SelectedItem = null;
+=======
+>>>>>>> Stashed changes
         }
 
         private void dataGridPersonas_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -117,7 +135,11 @@ namespace MiniHito
 
 
         // =========================================================
+<<<<<<< Updated upstream
         // PESTAÑA 2: GRUPOS
+=======
+        // PESTAÑA 2: GRUPOS (Lógica Nueva y Corregida)
+>>>>>>> Stashed changes
         // =========================================================
 
         private void CargarPestanaGrupos()
@@ -304,6 +326,7 @@ namespace MiniHito
             }
         }
 
+<<<<<<< Updated upstream
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
 
         // =========================================================
@@ -415,3 +438,9 @@ namespace MiniHito
         }
     }
 }
+=======
+        // Necesario si existe en tu XAML
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
+    }
+}
+>>>>>>> Stashed changes

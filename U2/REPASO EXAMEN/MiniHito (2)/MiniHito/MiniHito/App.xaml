@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿<Application x:Class="MiniHito.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -42,3 +43,17 @@
         </Style>
     </Application.Resources>
 </Application>
+=======
+﻿<!-- Archivo principal de la aplicación WPF -->
+<!-- Define la clase de aplicación y la URI de inicio -->
+<Application x:Class="MiniHito.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MiniHito"
+             StartupUri="view/MainWindow.xaml">
+    <!-- StartupUri: Define la ventana que se abrirá al iniciar la aplicación -->
+    <Application.Resources>
+        <!-- Recursos globales de la aplicación (estilos, plantillas, etc.) -->
+    </Application.Resources>
+</Application>
+>>>>>>> Stashed changes

@@ -13,8 +13,15 @@ namespace MiniHito.domain
         public String Apellidos { get; set; }
         public int Especialidad { get; set; }
 
+<<<<<<< Updated upstream
         public int Grupo { get; set; }
 
+=======
+        // --- NUEVO: Propiedad Grupo ---
+        public int Grupo { get; set; }
+
+        // --- NUEVO: Helper para mostrar nombre completo en ListBox ---
+>>>>>>> Stashed changes
         public string NombreCompleto
         {
             get { return Nombre + " " + Apellidos; }
@@ -36,6 +43,10 @@ namespace MiniHito.domain
             am = new AlumnoPersistence();
         }
 
+<<<<<<< Updated upstream
+=======
+        // Constructor compatible con tu código anterior (asigna grupo 0)
+>>>>>>> Stashed changes
         public Alumno(int id, String nombre, String apellidos, int especialidad)
         {
             Id = id;

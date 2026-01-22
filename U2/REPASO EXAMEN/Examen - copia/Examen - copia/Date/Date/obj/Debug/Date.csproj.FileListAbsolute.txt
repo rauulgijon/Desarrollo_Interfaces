@@ -1,0 +1,16 @@
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\bin\Debug\Date.exe.config
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\bin\Debug\Date.exe
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\bin\Debug\Date.pdb
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\Date.csproj.AssemblyReference.cache
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\MainWindow.g.cs
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\App.g.cs
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\Date_MarkupCompile.cache
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\Date_MarkupCompile.lref
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\MainWindow.baml
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\Date.g.resources
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\Date.Properties.Resources.resources
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\Date.csproj.GenerateResource.cache
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\Date.csproj.CoreCompileInputs.cache
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\Date.exe
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\Date.pdb
+C:\Users\b15-08m\Documents\GitHub\2-DAM\Interfaces\Tema 2\Date\Date\obj\Debug\Date.exe.config

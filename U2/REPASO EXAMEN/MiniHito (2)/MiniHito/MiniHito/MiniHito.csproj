@@ -104,10 +104,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< Updated upstream
     <Page Include="view\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+=======
+>>>>>>> Stashed changes
     <Page Include="view\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -117,6 +120,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="domain\Alumno.cs" />
+<<<<<<< Updated upstream
     <Compile Include="domain\Reto.cs" />
     <Compile Include="domain\Empresa.cs" />
     <Compile Include="domain\Grupo.cs" />
@@ -126,6 +130,10 @@
     <Compile Include="view\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+=======
+    <Compile Include="domain\Grupo.cs" />
+    <Compile Include="persistence\manage\GrupoPersistence.cs" />
+>>>>>>> Stashed changes
     <Compile Include="view\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
