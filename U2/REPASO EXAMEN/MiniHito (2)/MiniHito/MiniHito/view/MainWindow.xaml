@@ -4,127 +4,313 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="850">
+        Title="Panel de Control - MiniHito" Height="650" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="#ecf0f1">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" HorizontalAlignment="Center" Height="96" VerticalAlignment="Center" Width="800">
-            <Label Content="¿ACEPTAS EL RETO?" HorizontalAlignment="Center" VerticalAlignment="Center" Height="44" Width="238" FontSize="26"/>
-        </Grid>
+        <Border Grid.Row="0" Background="#2c3e50">
+            <DockPanel LastChildFill="False">
+                <Label Content="MINIHITO MANAGEMENT" 
+                       Foreground="White" 
+                       FontSize="20" 
+                       FontWeight="Bold" 
+                       VerticalAlignment="Center" 
+                       Margin="20,0,0,0"/>
 
-        <TabControl Grid.Row="1" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
+                <Label Content="¿ACEPTAS EL RETO?" 
+                       Foreground="#3498db" 
+                       FontSize="16" 
+                       FontWeight="SemiBold" 
+                       VerticalAlignment="Center" 
+                       DockPanel.Dock="Right" 
+                       Margin="0,0,20,0"/>
+            </DockPanel>
+        </Border>
+
+        <TabControl Grid.Row="1" 
+                    TabStripPlacement="Left" 
+                    SelectionChanged="TabControl_SelectionChanged"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Padding="10">
+
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Height" Value="50"/>
+                    <Setter Property="Width" Value="150"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="Margin" Value="0,0,5,5"/>
+                </Style>
+            </TabControl.Resources>
+
             <TabItem Header="INICIO">
-                <Grid Background="LightGray"/>
-            </TabItem>
-
-            <TabItem Header="PARTICIPANTES">
-                <Grid Background="LightGray">
-                    <TabControl SelectionChanged="TabControl_SelectionChanged">
-
-                        <TabItem Header="ALUMNADO">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="28*" MinWidth="300"/>
-                                    <ColumnDefinition Width="47*"/>
-                                    <ColumnDefinition Width="23*"/>
-                                    <ColumnDefinition Width="350"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,10,0,10" Width="300" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-
-                                <DataGrid x:Name="dataGridPersonas" Grid.Row="1" Grid.Column="0" Margin="10" MinWidth="300" SelectionChanged="dataGridPersonas_SelectionChanged" AutoGenerateColumns="False" Grid.ColumnSpan="3">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto" />
-                                        <DataGridTextColumn Header="Apellidos" Binding="{Binding Apellidos}" Width="auto" />
-                                        <DataGridTextColumn Header="Curso" Binding="{Binding Especialidad}" Width="auto" />
-                                    </DataGrid.Columns>
-                                </DataGrid>
-
-                                <StackPanel Grid.Row="1" Grid.Column="3" Margin="10,10,20,0" VerticalAlignment="Top">
-                                    <Label Content="ALUMNADO" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" HorizontalAlignment="Center"/>
-                                    <Label Content="Nombre" FontSize="14" Margin="0,5,0,2"/>
-                                    <TextBox x:Name="txtNombre" Height="25" FontSize="14" Margin="0,0,0,5"/>
-                                    <Label Content="Apellido" FontSize="14" Margin="0,5,0,2"/>
-                                    <TextBox x:Name="txtApellido" Height="25" FontSize="14" Margin="0,0,0,5"/>
-                                    <Label Content="Curso" FontSize="14" Margin="0,5,0,2"/>
-                                    <ComboBox x:Name="cmbCurso" Height="25" FontSize="14" Margin="0,0,0,5">
-                                        <ComboBoxItem Content="SC1" Tag="1"/>
-                                        <ComboBoxItem Content="SC2" Tag="2"/>
-                                    </ComboBox>
-                                </StackPanel>
-
-                                <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="42,0,0,0" VerticalAlignment="Center">
-                                    <Button x:Name="btnAgregar" Content="Agregar" Width="90" Height="30" Margin="3" Click="btnAgregar_Click"/>
-                                    <Button x:Name="btnModificar" Content="Modificar" Width="90" Height="30" Margin="3" Click="btnModificar_Click"/>
-                                    <Button x:Name="btnEliminar" Content="Eliminar" Width="90" Height="30" Margin="3" Click="btnEliminar_Click"/>
-                                </StackPanel>
-                            </Grid>
-                        </TabItem>
-
-                        <TabItem Header="GRUPOS" Margin="-2,-2,-3,0">
-                            <Grid Background="#FFE5E5E5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <ListBox x:Name="lstAlumnosSinGrupo" Grid.Column="0" Margin="20,20,20,0" Width="150" Height="200" DisplayMemberPath="NombreCompleto"/>
-
-                                <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical" VerticalAlignment="Center" Margin="10,0">
-                                    <Button x:Name="btnMoverDerecha" Content="&gt;&gt;" Height="34" Width="83" Margin="0,10" Click="btnMoverDerecha_Click"/>
-                                    <Button x:Name="btnMoverIzquierda" Content="&lt;&lt;" Height="34" Width="83" Margin="0,10" Click="btnMoverIzquierda_Click"/>
-                                </StackPanel>
-
-                                <ListBox x:Name="lstAlumnosEnGrupo" Grid.Column="2" Margin="20,20,20,0" Width="150" Height="200" DisplayMemberPath="NombreCompleto"/>
-
-                                <StackPanel Grid.Column="3" Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Label Content="NOMBRE GRUPO" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                    <TextBox x:Name="txtNombreGrupo" Height="25" Width="150" FontSize="14" Margin="0,10,0,5"/>
-                                    <Button x:Name="btnGuardarGrupo" Content="Añadir/Modificar" Height="34" Width="130" Margin="0,10,0,0" FontWeight="Bold" Click="btnGuardarGrupo_Click"/>
-                                </StackPanel>
-
-                                <Rectangle Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" Height="11" Margin="20,20" Stroke="Yellow" Fill="Yellow" RadiusX="20" RadiusY="20"/>
-
-                                <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,20">
-                                    <Label Content="NOMBRE GRUPO SELECCIONADO" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-
-                                    <ListBox x:Name="lstGrupos" 
-                                         Height="150" 
-                                         Width="200"
-                                         HorizontalAlignment="Center"
-                                         DisplayMemberPath="Nombre" 
-                                         SelectionChanged="lstGrupos_SelectionChanged"
-                                         Background="White"
-                     BorderBrush="Gray"/>
-                                </StackPanel>
-
-                                <Button x:Name="btnEliminarGrupo" Content="Eliminar" Grid.Column="3" Grid.Row="2" Height="34" Width="130" VerticalAlignment="Top" Margin="0,30,0,0" FontWeight="Bold" Click="btnEliminarGrupo_Click"/>
-                            </Grid>
-                        </TabItem>
-                    </TabControl>
+                <Grid>
+                    <TextBlock Text="Bienvenido al Panel de Gestión" 
+                               FontSize="30" Foreground="#bdc3c7" FontWeight="Bold" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
             </TabItem>
 
+            <TabItem Header="PARTICIPANTES">
+                <TabControl SelectionChanged="TabControl_SelectionChanged" Margin="0" BorderThickness="0" Background="Transparent">
+
+                    <TabItem Header=" GESTIÓN ALUMNOS " FontSize="14" FontWeight="Bold">
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1.2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <DataGrid x:Name="dataGridPersonas" 
+                                      Grid.Column="0" 
+                                      Margin="0,0,15,0" 
+                                      SelectionChanged="dataGridPersonas_SelectionChanged" 
+                                      AutoGenerateColumns="False" 
+                                      IsReadOnly="True"
+                                      HeadersVisibility="Column"
+                                      GridLinesVisibility="Horizontal"
+                                      Background="White"
+                                      BorderBrush="#bdc3c7"
+                                      RowHeight="30"
+                                      FontSize="13">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*" />
+                                    <DataGridTextColumn Header="Apellidos" Binding="{Binding Apellidos}" Width="*" />
+                                    <DataGridTextColumn Header="Curso (Esp)" Binding="{Binding Especialidad}" Width="80" />
+                                    <DataGridTextColumn Header="Grupo ID" Binding="{Binding Grupo}" Width="70" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Border Grid.Column="1" Background="White" CornerRadius="8" Padding="20" VerticalAlignment="Top">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#95a5a6" BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                                </Border.Effect>
+
+                                <StackPanel>
+                                    <Label Content="DETALLES DEL ALUMNO" FontSize="16" Foreground="#3498db" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                                    <Label Content="Nombre:"/>
+                                    <TextBox x:Name="txtNombre" />
+
+                                    <Label Content="Apellidos:"/>
+                                    <TextBox x:Name="txtApellido" />
+
+                                    <Label Content="Especialidad / Curso:"/>
+                                    <ComboBox x:Name="cmbCurso" Height="35" FontSize="14" Margin="0,5,0,20" VerticalContentAlignment="Center">
+                                        <ComboBoxItem Content="1" Tag="1"/>
+                                        <ComboBoxItem Content="2" Tag="2"/>
+                                    </ComboBox>
+
+                                    <WrapPanel HorizontalAlignment="Center" Margin="0,10,0,0">
+                                        <Button x:Name="btnAgregar" Content="Añadir" Width="100" Click="btnAgregar_Click" Background="#2ecc71"/>
+                                        <Button x:Name="btnModificar" Content="Guardar" Width="100" Click="btnModificar_Click" Background="#f39c12"/>
+                                        <Button x:Name="btnEliminar" Content="Eliminar" Width="100" Click="btnEliminar_Click" Background="#e74c3c"/>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header=" ASIGNACIÓN GRUPOS " FontSize="14" FontWeight="Bold" Padding="0" Margin="-2,-1,-2,1" >
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Background="White" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#95a5a6" BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="1.2*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="5">
+                                        <Label Content="Alumnos Disponibles" HorizontalAlignment="Center"/>
+                                        <ListBox x:Name="lstAlumnosSinGrupo" Height="200" DisplayMemberPath="NombreCompleto" BorderBrush="#bdc3c7"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10">
+                                        <Button x:Name="btnMoverDerecha" Content="➜" FontSize="18" Width="50" Click="btnMoverDerecha_Click" Background="#3498db"/>
+                                        <Button x:Name="btnMoverIzquierda" Content="⬅" FontSize="18" Width="50" Click="btnMoverIzquierda_Click" Background="#95a5a6" Margin="0,10,0,0"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" Margin="5">
+                                        <Label Content="Alumnos en el Grupo" HorizontalAlignment="Center"/>
+                                        <ListBox x:Name="lstAlumnosEnGrupo" Height="200" DisplayMemberPath="NombreCompleto" BorderBrush="#bdc3c7"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="20,0,0,0">
+                                        <Label Content="DATOS DEL GRUPO" FontWeight="Bold" Foreground="#3498db"/>
+
+                                        <Label Content="Nombre / Descripción:"/>
+                                        <TextBox x:Name="txtNombreGrupo" />
+
+                                        <Button x:Name="btnGuardarGrupo" Content="CREAR / GUARDAR GRUPO" Click="btnGuardarGrupo_Click" Height="40" Margin="0,10,0,0"/>
+                                        <TextBlock Text="Selecciona un grupo abajo para editarlo" FontSize="11" Foreground="Gray" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <Separator Grid.Row="1" Margin="0,10"/>
+
+                            <Grid Grid.Row="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Row="0" Content="GRUPOS EXISTENTES" FontSize="16" FontWeight="Bold" Foreground="#2c3e50" HorizontalAlignment="Center"/>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <ListBox x:Name="lstGrupos" 
+                                             Margin="0,5,0,0"
+                                             DisplayMemberPath="Nombre" 
+                                             SelectionChanged="lstGrupos_SelectionChanged"
+                                             Background="White"
+                                             BorderBrush="#bdc3c7"
+                                             FontSize="14"/>
+
+                                    <Button Grid.Column="1" x:Name="btnEliminarGrupo" Content="Eliminar Grupo" 
+                                            Click="btnEliminarGrupo_Click" 
+                                            Background="#e74c3c" 
+                                            VerticalAlignment="Top" 
+                                            Margin="10,5,0,0" Width="120"/>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+
             <TabItem Header="EMPRESAS">
-                <Grid/>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="dataGridEmpresa" 
+              Grid.Column="0" 
+              Margin="0,0,15,0" 
+              SelectionChanged="dataGridEmpresa_SelectionChanged" 
+              AutoGenerateColumns="False" 
+              IsReadOnly="True"
+              HeadersVisibility="Column"
+              GridLinesVisibility="Horizontal"
+              Background="White"
+              BorderBrush="#bdc3c7"
+              RowHeight="30"
+              FontSize="13">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Razon Social" Binding="{Binding RazonSocial}" Width="*" />
+                            <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" Width="*" />
+                            <DataGridTextColumn Header="Ciudad" Binding="{Binding Ciudad}" Width="*" />
+                            <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}" Width="*" />
+                            <DataGridTextColumn Header="Correo" Binding="{Binding Correo}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Border Grid.Column="1" Background="White" CornerRadius="8" Padding="20" VerticalAlignment="Top">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#95a5a6" BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                        </Border.Effect>
+
+                        <StackPanel>
+                            <Label Content="DETALLES DE LA EMPRESA" FontSize="16" Foreground="#3498db" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                            <Label Content="Razon Social:"/>
+                            <TextBox x:Name="txtRazonSocial" />
+
+                            <Label Content="Dirección:"/>
+                            <TextBox x:Name="txtDireccion" />
+
+                            <Label Content="Ciudad:"/>
+                            <TextBox x:Name="txtCiudad" />
+
+                            <Label Content="Teléfono:"/>
+                            <TextBox x:Name="txtTelefono" />
+
+                            <Label Content="Correo:"/>
+                            <TextBox x:Name="txtCorreo" />
+
+                            <WrapPanel HorizontalAlignment="Center" Margin="0,10,0,0">
+                                <Button x:Name="btnAgregarEmpresa" Content="Añadir" Width="70" Click="btnAgregarEmpresa_Click" Background="#2ecc71"/>
+                                <Button x:Name="btnModificarEmpresa" Content="Guardar" Width="70" Click="btnModificarEmpresa_Click" Background="#f39c12"/>
+                                <Button x:Name="btnEliminarEmpresa" Content="Eliminar" Width="70" Click="btnEliminarEmpresa_Click" Background="#e74c3c"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
             </TabItem>
             <TabItem Header="RETOS">
-                <Grid/>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="dataGridReto" 
+Grid.Column="0" 
+Margin="0,0,15,0" 
+SelectionChanged="dataGridReto_SelectionChanged" 
+AutoGenerateColumns="False" 
+IsReadOnly="True"
+HeadersVisibility="Column"
+GridLinesVisibility="Horizontal"
+Background="White"
+BorderBrush="#bdc3c7"
+RowHeight="30"
+FontSize="13">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" Width="*" />
+                            <DataGridTextColumn Header="Activo" Binding="{Binding Activo}" Width="*" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Border Grid.Column="1" Background="White" CornerRadius="8" Padding="20" VerticalAlignment="Top">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#95a5a6" BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                        </Border.Effect>
+
+                        <StackPanel>
+                            <Label Content="DETALLES DEL RETO" FontSize="16" Foreground="#3498db" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                            <Label Content="Descripcion:"/>
+                            <TextBox x:Name="txtDescripcion" />
+
+                            <Label Content="Activo:"/>
+                            <TextBox x:Name="txtActivo" />
+
+                            
+
+                            <WrapPanel HorizontalAlignment="Center" Margin="0,10,0,0">
+                                <Button x:Name="btnAgregarReto" Content="Añadir" Width="70" Click="btnAgregarEmpresa_Click" Background="#2ecc71"/>
+                                <Button x:Name="btnModificarReto" Content="Guardar" Width="70" Click="btnModificarEmpresa_Click" Background="#f39c12"/>
+                                <Button x:Name="btnEliminarReto" Content="Eliminar" Width="70" Click="btnEliminarEmpresa_Click" Background="#e74c3c"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
             </TabItem>
             <TabItem Header="TALENT LAB">
                 <Grid/>
@@ -132,6 +318,7 @@
             <TabItem Header="USUARIOS">
                 <Grid/>
             </TabItem>
+
         </TabControl>
     </Grid>
 </Window>

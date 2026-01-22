@@ -20,6 +20,7 @@ namespace MiniHito.persistence
                 {
                     if (fila.Count >= 2)
                     {
+                        // 0: ID_GRUPO, 1: DESCRIPCION (O NOMBRE)
                         Grupo g = new Grupo(Convert.ToInt32(fila[0]), fila[1].ToString());
                         grupos.Add(g);
                     }
@@ -33,7 +34,7 @@ namespace MiniHito.persistence
         {
             try
             {
-                string sql = "INSERT INTO AceptasReto.grupo (nombre) VALUES ('" + g.Nombre + "');";
+                string sql = "INSERT INTO aceptasreto.grupo (DESCRIPCION) VALUES ('" + g.Nombre + "');";
                 DBBroker.obtenerAgente().modificar(sql);
             }
             catch (Exception ex) { MessageBox.Show("Error insertando grupo: " + ex.Message); }
@@ -43,8 +44,7 @@ namespace MiniHito.persistence
         {
             try
             {
-                // La tabla 'grupo' SÍ tiene 'idgrupo' (clave primaria)
-                string sql = "UPDATE aceptasreto.grupo SET nombre = '" + g.Nombre + "' WHERE idgrupo = " + g.Id + ";";
+                string sql = "UPDATE aceptasreto.grupo SET DESCRIPCION = '" + g.Nombre + "' WHERE ID_GRUPO = " + g.Id + ";";
                 DBBroker.obtenerAgente().modificar(sql);
             }
             catch (Exception ex) { MessageBox.Show("Error actualizando grupo: " + ex.Message); }
@@ -54,14 +54,12 @@ namespace MiniHito.persistence
         {
             try
             {
-                // CORREGIDO: La tabla 'alumnado' tiene columna 'grupo'
-
-                // La tabla 'grupo' tiene columna 'idgrupo'
-                string sqlLiberar = "UPDATE aceptasreto.alumnado SET grupo = 0 WHERE grupo = " + id + ";";
+                // Primero: Quitamos a los alumnos de este grupo (poner a NULL o 0)
+                string sqlLiberar = "UPDATE aceptasreto.alumno SET ID_GRUPO = 0 WHERE ID_GRUPO = " + id + ";";
                 DBBroker.obtenerAgente().modificar(sqlLiberar);
 
-                // La tabla 'grupo' tiene columna 'idgrupo'
-                string sqlBorrar = "DELETE FROM aceptasreto.grupo WHERE idgrupo = " + id + ";";
+                // Segundo: Borramos el grupo
+                string sqlBorrar = "DELETE FROM aceptasreto.grupo WHERE ID_GRUPO = " + id + ";";
                 DBBroker.obtenerAgente().modificar(sqlBorrar);
             }
             catch (Exception ex) { MessageBox.Show("Error eliminando grupo: " + ex.Message); }
@@ -71,7 +69,8 @@ namespace MiniHito.persistence
         {
             try
             {
-                string sql = "SELECT * FROM aceptasreto.grupo WHERE nombre = '" + nombre + "' ORDER BY idgrupo DESC LIMIT 1;";
+                // Buscar por DESCRIPCION
+                string sql = "SELECT * FROM aceptasreto.grupo WHERE DESCRIPCION = '" + nombre + "' ORDER BY ID_GRUPO DESC LIMIT 1;";
                 List<Object> aux = DBBroker.obtenerAgente().leer(sql);
                 if (aux.Count > 0)
                 {

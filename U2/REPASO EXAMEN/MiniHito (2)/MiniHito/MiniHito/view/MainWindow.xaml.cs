@@ -11,7 +11,6 @@ namespace MiniHito
 {
     public partial class MainWindow : Window
     {
-        // ---------------- VARIABLES GLOBALES ----------------
 
         // Pestaña Alumnos
         ObservableCollection<Alumno> lsPersonas;
@@ -22,6 +21,14 @@ namespace MiniHito
         ObservableCollection<Alumno> alumnosSinGrupoOC;
         ObservableCollection<Alumno> alumnosEnGrupoOC;
 
+        //Empresas
+        Empresa empresa;
+        ObservableCollection<Empresa> lsEmpresa;
+
+        //Empresas
+        Reto reto;
+        ObservableCollection<Reto> lsReto;
+
         // Control de estado: ¿Estamos editando un grupo existente o creando uno nuevo?
         private Grupo grupoEnEdicion = null;
 
@@ -31,7 +38,11 @@ namespace MiniHito
 
             // Cargar pestaña 1
             lsPersonas = new ObservableCollection<Alumno>();
+            lsEmpresa = new ObservableCollection<Empresa>();
             alumno = new Alumno();
+            empresa = new Empresa();
+            reto = new Reto();
+            lsReto = new ObservableCollection<Reto>();
             cargarPersonas();
 
             // Cargar pestaña 2 (Grupos) INICIALMENTE
@@ -39,7 +50,7 @@ namespace MiniHito
         }
 
         // =========================================================
-        // PESTAÑA 1: ALUMNADO (Tu código original)
+        // PESTAÑA 1: ALUMNADO 
         // =========================================================
         private void cargarPersonas()
         {
@@ -53,6 +64,8 @@ namespace MiniHito
         {
             txtNombre.Text = ""; txtApellido.Text = ""; cmbCurso.SelectedItem = null;
             btnModificar.IsEnabled = false; dataGridPersonas.SelectedItem = null;
+            txtRazonSocial.Text = ""; txtDireccion.Text = ""; txtCiudad.Text = ""; txtTelefono.Text = ""; txtCorreo.Text = "";
+            btnModificarEmpresa.IsEnabled = false; dataGridEmpresa.SelectedItem = null;
         }
 
         private void dataGridPersonas_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -104,7 +117,7 @@ namespace MiniHito
 
 
         // =========================================================
-        // PESTAÑA 2: GRUPOS (Lógica Nueva y Corregida)
+        // PESTAÑA 2: GRUPOS
         // =========================================================
 
         private void CargarPestanaGrupos()
@@ -291,7 +304,114 @@ namespace MiniHito
             }
         }
 
-        // Necesario si existe en tu XAML
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
+
+        // =========================================================
+        // PESTAÑA 3: EMPRESAS
+        // =========================================================
+        private void cargarEmpresa()
+        {
+            lsEmpresa.Clear();
+            var empresas = EmpresaPersistence.LeerEmpresas();
+            foreach (var p in empresas) lsEmpresa.Add(p);
+            if (dataGridEmpresa != null) dataGridEmpresa.ItemsSource = lsEmpresa;
+        }
+
+        private void btnEliminarEmpresa_Click(object sender, RoutedEventArgs e)
+        {
+            Empresa em = dataGridEmpresa.SelectedItem as Empresa;
+            if (em != null && MessageBox.Show("¿Eliminar empresa?", "Confirmar", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                try { em.eliminar(); lsEmpresa.Remove(em); start(); } catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+        }
+
+        private void btnAgregarEmpresa_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtRazonSocial.Text) || string.IsNullOrWhiteSpace(txtDireccion.Text) || string.IsNullOrWhiteSpace(txtCiudad.Text) || string.IsNullOrWhiteSpace(txtTelefono.Text) || string.IsNullOrWhiteSpace(txtCorreo.Text)) return;
+            try
+            {
+                Empresa psnew = new Empresa(txtRazonSocial.Text, txtDireccion.Text, txtCiudad.Text, txtTelefono.Text, txtCorreo.Text);
+                psnew.insertar(); cargarEmpresa(); start(); MessageBox.Show("Agregado");
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void btnModificarEmpresa_Click(object sender, RoutedEventArgs e)
+        {
+            Empresa em = dataGridEmpresa.SelectedItem as Empresa;
+            if (em == null) return;
+            try
+            {
+                em.RazonSocial = txtRazonSocial.Text; em.Ciudad = txtCiudad.Text; em.Telefono = txtTelefono.Text; em.Correo = txtCorreo.Text;
+                em.actualizar(); dataGridEmpresa.Items.Refresh(); start(); MessageBox.Show("Modificado");
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void dataGridEmpresa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Empresa em = dataGridEmpresa.SelectedItem as Empresa;
+            if (em != null)
+            {
+                em.RazonSocial = txtRazonSocial.Text; em.Ciudad = txtCiudad.Text; em.Telefono = txtTelefono.Text; em.Correo = txtCorreo.Text;
+                btnModificar.IsEnabled = true;
+            }
+            else btnModificar.IsEnabled = false;
+        }
+
+        // =========================================================
+        // PESTAÑA 3: RETOS
+        // =========================================================
+        private void cargarReto()
+        {
+            lsReto.Clear();
+            var retos = RetoPersistence.LeerRetos();
+            foreach (var p in retos) lsReto.Add(p);
+            if (dataGridReto != null) dataGridReto.ItemsSource = lsReto;
+        }
+
+        private void btnEliminarReto_Click(object sender, RoutedEventArgs e)
+        {
+            Reto r = dataGridReto.SelectedItem as Reto;
+            if (r != null && MessageBox.Show("¿Eliminar empresa?", "Confirmar", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                try { r.eliminar(); lsReto.Remove(r); start(); } catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+        }
+
+        //private void btnAgregarReto_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (string.IsNullOrWhiteSpace(txtDescripcion.Text) || string.IsNullOrWhiteSpace(txtActivo.Text)) return;
+        //    try
+        //    {
+        //        Reto psnew = new Reto(txtDescripcion.Text, txtActivo.bool);
+        //        psnew.insertar(); cargarReto(); start(); MessageBox.Show("Agregado");
+        //    }
+        //    catch (Exception ex) { MessageBox.Show(ex.Message); }
+        //}
+
+        private void btnModificarReto_Click(object sender, RoutedEventArgs e)
+        {
+            Empresa em = dataGridEmpresa.SelectedItem as Empresa;
+            if (em == null) return;
+            try
+            {
+                em.RazonSocial = txtRazonSocial.Text; em.Ciudad = txtCiudad.Text; em.Telefono = txtTelefono.Text; em.Correo = txtCorreo.Text;
+                em.actualizar(); dataGridEmpresa.Items.Refresh(); start(); MessageBox.Show("Modificado");
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void dataGridReto_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Empresa em = dataGridEmpresa.SelectedItem as Empresa;
+            if (em != null)
+            {
+                em.RazonSocial = txtRazonSocial.Text; em.Ciudad = txtCiudad.Text; em.Telefono = txtTelefono.Text; em.Correo = txtCorreo.Text;
+                btnModificar.IsEnabled = true;
+            }
+            else btnModificar.IsEnabled = false;
+        }
     }
 }

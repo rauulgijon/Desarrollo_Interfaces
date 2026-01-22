@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using ExampleMVCnoDatabase.Persistence; // Importante para usar tu DBBroker
-using MiniHito; // Para poder llamar a MainWindow
+using ExampleMVCnoDatabase.Persistence; // Tu DBBroker
+using MiniHito; // Tu MainWindow
 
 namespace MiniHito.view
 {
@@ -26,28 +26,29 @@ namespace MiniHito.view
 
             try
             {
-                // NOTA: Si tu tabla en MySQL se llama diferente, cambia 'Usuarios' aquí.
-                // Si tus columnas no son 'NombreUsuario' y 'Password', cámbialas también.
-                string sql = $"SELECT * FROM Usuarios WHERE NombreUsuario = '{user}' AND Password = '{pass}';";
+                // CORRECCIÓN IMPORTANTE BASADA EN TU ARCHIVO SQL:
+                // 1. Tabla: 'usuario' (singular)
+                // 2. Columnas: 'USERNAME' y 'PASSWORD'
+                // 3. Comprobamos también que ACTIVO sea 1 (usuario habilitado)
+                string sql = $"SELECT * FROM usuario WHERE USERNAME = '{user}' AND PASSWORD = '{pass}' AND ACTIVO = 1;";
 
-                // Usamos tu DBBroker existente
                 List<object> resultado = DBBroker.obtenerAgente().leer(sql);
 
                 if (resultado.Count > 0)
                 {
-                    // Login correcto: Abrimos la ventana principal
+                    // Login correcto
                     MainWindow main = new MainWindow();
                     main.Show();
-                    this.Close(); // Cerramos el login
+                    this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos.");
+                    MessageBox.Show("Usuario incorrecto o no activo.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error de conexión: " + ex.Message);
+                MessageBox.Show("Error al conectar con la base de datos: " + ex.Message);
             }
         }
 

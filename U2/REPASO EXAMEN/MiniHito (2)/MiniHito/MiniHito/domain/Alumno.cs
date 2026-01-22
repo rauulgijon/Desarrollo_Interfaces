@@ -13,10 +13,8 @@ namespace MiniHito.domain
         public String Apellidos { get; set; }
         public int Especialidad { get; set; }
 
-        // --- NUEVO: Propiedad Grupo ---
         public int Grupo { get; set; }
 
-        // --- NUEVO: Helper para mostrar nombre completo en ListBox ---
         public string NombreCompleto
         {
             get { return Nombre + " " + Apellidos; }
@@ -38,7 +36,6 @@ namespace MiniHito.domain
             am = new AlumnoPersistence();
         }
 
-        // Constructor compatible con tu código anterior (asigna grupo 0)
         public Alumno(int id, String nombre, String apellidos, int especialidad)
         {
             Id = id;

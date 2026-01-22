@@ -117,7 +117,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="domain\Alumno.cs" />
+    <Compile Include="domain\Reto.cs" />
+    <Compile Include="domain\Empresa.cs" />
     <Compile Include="domain\Grupo.cs" />
+    <Compile Include="persistence\manage\RetoPersistence.cs" />
+    <Compile Include="persistence\manage\EmpresaPersistence.cs" />
     <Compile Include="persistence\manage\GrupoPersistence.cs" />
     <Compile Include="view\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
