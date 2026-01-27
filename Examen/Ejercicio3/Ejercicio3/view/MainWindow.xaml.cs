@@ -84,7 +84,6 @@ namespace Ejercicio3
         {
             // Limpieza de campos del formulario
             txtNombre.Text = "";
-            txtFecha.Text = "";
             txtPuntos.Text = "";
             datePickerFechaNacimiento.SelectedDate = null;
 
@@ -147,8 +146,7 @@ namespace Ejercicio3
 
             ComboBoxItem selectedNivel = cmbNivel.SelectedItem as ComboBoxItem;
             int nivel = int.Parse(selectedNivel.Tag.ToString());
-            string fecha = txtFecha.Text;
-            fecha = datePickerFechaNacimiento.SelectedDate.Value.ToString("yyyy-MM-dd");
+            String fecha = datePickerFechaNacimiento.SelectedDate.Value.ToString("yyyy-MM-dd");
 
             Jugador nuevo = new Jugador(txtNombre.Text, puntuacion, fecha, nivel);
 
