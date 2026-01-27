@@ -42,14 +42,10 @@ namespace Ejercicio3
             persona = new Jugador();
             cargarPersonas();
 
-            // Configuración inicial de la UI
             start();
 
-            // 1. Generamos los datos de la serpiente (rellena la lista 'serpiente')
             GenerarSerpiente();
 
-            // 2. ¡IMPORTANTE! Pintamos la serpiente en la pantalla.
-            // Antes llamabas a fillGrid(), que solo pinta el fondo.
             PintarTableroCompleto();
         }
         public void fillGrid()
