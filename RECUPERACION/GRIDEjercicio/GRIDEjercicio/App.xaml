@@ -1,7 +1,7 @@
-﻿<Application x:Class="ExamenRepaso.App"
+﻿<Application x:Class="GRIDEjercicio.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ExamenRepaso"
+             xmlns:local="clr-namespace:GRIDEjercicio"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

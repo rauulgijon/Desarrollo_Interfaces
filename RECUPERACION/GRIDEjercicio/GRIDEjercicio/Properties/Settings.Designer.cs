@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExamenRepaso.Properties
+namespace GRIDEjercicio.Properties
 {
 
 
