@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Proyecto Ejercicio3 (Serpientes)</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f3f4f6; color: #1f2937; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #2563eb; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; }
+        h2 { color: #111827; margin-top: 30px; border-left: 5px solid #2563eb; padding-left: 10px; }
+        h3 { color: #4b5563; }
+        code { background: #eff6ff; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-weight: bold; }
+        pre { background: #1f2937; color: #f3f4f6; padding: 15px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9em; }
+        .note { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; color: #92400e; }
+        .success { background: #d1fae5; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; color: #065f46; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #e5e7eb; padding: 10px; text-align: left; }
+        th { background: #f9fafb; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🐍 Resumen Examen: Proyecto Ejercicio3</h1>
+    <p>Guía de estudio basada 100% en tu código real (Namespace: <code>Ejercicio3</code>).</p>
+
+    <h2>1. Arquitectura de Tu Proyecto</h2>
+    <p>El proyecto usa una arquitectura en <strong>3 capas</strong> para separar la lógica:</p>
+    <ul>
+        <li><strong>VISTA (MainWindow.xaml.cs):</strong> Maneja los botones (<code>btnAgregar</code>, <code>btnModificar</code>), los Inputs (<code>txtNombre</code>, <code>chkVip</code>) y el juego de la serpiente.</li>
+        <li><strong>DOMINIO (Jugador.cs):</strong> La clase que transporta los datos. Tiene propiedades como <code>Nombre</code>, <code>EsVip</code>, <code>Turno</code>.</li>
+        <li><strong>PERSISTENCIA (DBBroker.cs + JugadorPersistence.cs):</strong> Se encargan de hablar con MySQL.</li>
+    </ul>
+
+    <h2>2. La Base de Datos (MySQL)</h2>
+    <div class="note">
+        <strong>Nombre BDD:</strong> <code>serpientes</code> (¡Ojo al plural!)<br>
+        <strong>Tabla:</strong> <code>jugador</code>
+    </div>
+    <pre>
+CREATE TABLE jugador (
+    idJugador INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    puntuacion INT,
+    email VARCHAR(100),          -- Nuevo campo
+    es_vip TINYINT(1) DEFAULT 0, -- CheckBox (0=Falso, 1=Verdadero)
+    turno VARCHAR(20),           -- RadioButton ("Mañana" o "Tarde")
+    fecha VARCHAR(20),           -- DatePicker
+    nivel INT                    -- ComboBox
+);</pre>
+
+    <h2>3. Chuleta: De Pantalla a Código (MainWindow.xaml.cs)</h2>
+    <p>Así es como extraes los datos en tu método <code>btnAgregar_Click</code>:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Control Visual</th>
+                <th>Nombre en tu XAML</th>
+                <th>Código para Extraer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Caja de Texto</td>
+                <td><code>txtNombre</code></td>
+                <td><code>string n = txtNombre.Text;</code></td>
+            </tr>
+            <tr>
+                <td>Número</td>
+                <td><code>txtPuntos</code></td>
+                <td><code>int.TryParse(txtPuntos.Text, out int p);</code></td>
+            </tr>
+            <tr>
+                <td><strong>CheckBox (VIP)</strong></td>
+                <td><code>chkVip</code></td>
+                <td><code>bool vip = chkVip.IsChecked == true;</code></td>
+            </tr>
+            <tr>
+                <td><strong>RadioButtons</strong></td>
+                <td><code>rbManana</code> / <code>rbTarde</code></td>
+                <td><code>string t = rbManana.IsChecked == true ? "Mañana" : "Tarde";</code></td>
+            </tr>
+            <tr>
+                <td>ComboBox</td>
+                <td><code>cmbNivel</code></td>
+                <td><code>int niv = int.Parse(((ComboBoxItem)cmbNivel.SelectedItem).Tag.ToString());</code></td>
+            </tr>
+            <tr>
+                <td>Fecha</td>
+                <td><code>datePicker...</code></td>
+                <td><code>string f = datePickerFechaNacimiento.SelectedDate.Value.ToString("yyyy-MM-dd");</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Código Crítico (JugadorPersistence.cs)</h2>
+    <p>El punto donde más gente suspende. Cómo leer sin errores.</p>
+
+    <h3>A. Lectura Segura (Evitar fallos de nulos)</h3>
+    <pre>
+// En leerPersonas():
+// 1. Usar nombres de columnas, NO asterisco (*)
+string sql = "SELECT idJugador, nombre, puntuacion, email, es_vip, turno, fecha, nivel FROM serpientes.jugador";
+
+// 2. Convertir el Boolean (VIP) de forma segura
+bool esVip = false;
+if (fila[4] != null) {
+    // Acepta "1", "True", "true"...
+    string v = fila[4].ToString().ToLower();
+    if (v == "1" || v == "true") esVip = true;
+}
+
+// 3. Convertir la Fecha de forma segura
+DateTime dt;
+string fecha = "";
+if (DateTime.TryParse(fila[6].ToString(), out dt)) {
+    fecha = dt.ToString("yyyy-MM-dd");
+} else {
+    fecha = DateTime.Now.ToString("yyyy-MM-dd"); // Fecha por defecto
+}</pre>
+
+    <h3>B. Insertar / Guardar</h3>
+    <pre>
+// Convertir el bool de C# a 1 o 0 para MySQL
+int vipVal = p.EsVip ? 1 : 0;
+
+string sql = "INSERT INTO ... VALUES (..., " + vipVal + ", ...)";</pre>
+
+    <h2>5. Restaurar Datos en Pantalla (SelectionChanged)</h2>
+    <p>Cuando pinchas en la tabla y quieres que se rellene el formulario.</p>
+    <pre>
+// Restaurar CheckBox
+chkVip.IsChecked = p.EsVip;
+
+// Restaurar RadioButtons (Truco del IF)
+if (p.Turno == "Tarde") {
+    rbTarde.IsChecked = true;
+} else {
+    rbManana.IsChecked = true;
+}</pre>
+
+    <h2>6. Configuración DBBroker (Para no fallar conexión)</h2>
+    <div class="note">
+        Archivo: <code>Ejercicio3/persistence/DBBroker.cs</code>
+    </div>
+    <pre>
+// Si usas XAMPP en clase, la password suele estar vacía
+private const String cadenaConexion = "server=localhost;database=serpientes;uid=root;pwd=";</pre>
+
+    <div class="success">
+        <h3>✨ Resumen Final</h3>
+        <ol>
+            <li>Tu Namespace es <strong>Ejercicio3</strong>.</li>
+            <li>Tu Base de Datos es <strong>serpientes</strong>.</li>
+            <li>Nunca uses <code>SELECT *</code>, usa <code>SELECT nombre, email...</code>.</li>
+            <li>Revisa siempre si la conexión tiene contraseña (<code>pwd=</code>) o no.</li>
+        </ol>
+    </div>
+</div>
+
+</body>
+</html>
