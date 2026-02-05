@@ -4,70 +4,64 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using MiniHito.persistence;
 using MiniHito.domain;
+using MiniHito.persistence;
+using MiniHito.services; // Asegúrate de haber creado el archivo CalendarificService.cs en la carpeta services
 
 namespace MiniHito
 {
     public partial class MainWindow : Window
     {
-<<<<<<< Updated upstream
-=======
-        // ---------------- VARIABLES GLOBALES ----------------
->>>>>>> Stashed changes
-
-        // Pestaña Alumnos
+        // ================= COLECCIONES DE DATOS =================
         ObservableCollection<Alumno> lsPersonas;
-        Alumno alumno;
 
-        // Pestaña Grupos
         ObservableCollection<Grupo> listaGruposOC;
         ObservableCollection<Alumno> alumnosSinGrupoOC;
         ObservableCollection<Alumno> alumnosEnGrupoOC;
 
-<<<<<<< Updated upstream
-        //Empresas
-        Empresa empresa;
         ObservableCollection<Empresa> lsEmpresa;
 
-        //Empresas
-        Reto reto;
         ObservableCollection<Reto> lsReto;
 
-=======
->>>>>>> Stashed changes
-        // Control de estado: ¿Estamos editando un grupo existente o creando uno nuevo?
-        private Grupo grupoEnEdicion = null;
+        // Variable para controlar qué grupo estamos editando
+        Grupo grupoEnEdicion = null;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // Cargar pestaña 1
+            // Inicializar las colecciones
             lsPersonas = new ObservableCollection<Alumno>();
-<<<<<<< Updated upstream
             lsEmpresa = new ObservableCollection<Empresa>();
-            alumno = new Alumno();
-            empresa = new Empresa();
-            reto = new Reto();
             lsReto = new ObservableCollection<Reto>();
-=======
-            alumno = new Alumno();
->>>>>>> Stashed changes
-            cargarPersonas();
 
-            // Cargar pestaña 2 (Grupos) INICIALMENTE
+            // Cargar datos iniciales de todas las pestañas
+            CargarPersonas();
             CargarPestanaGrupos();
+            cargarEmpresa();
+            cargarReto();
         }
 
-        // =========================================================
-<<<<<<< Updated upstream
-        // PESTAÑA 1: ALUMNADO 
-=======
-        // PESTAÑA 1: ALUMNADO (Tu código original)
->>>>>>> Stashed changes
-        // =========================================================
-        private void cargarPersonas()
+        // Evento genérico para refrescar datos al cambiar de pestaña
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.Source is TabControl)
+            {
+                var tab = (sender as TabControl).SelectedItem as TabItem;
+                if (tab != null)
+                {
+                    if (tab.Header.ToString() == "ALUMNADO") CargarPersonas();
+                    else if (tab.Header.ToString() == "GRUPOS") CargarPestanaGrupos();
+                    else if (tab.Header.ToString() == "EMPRESAS") cargarEmpresa();
+                    else if (tab.Header.ToString() == "RETOS") cargarReto();
+                }
+            }
+        }
+
+        // =======================================================
+        // LÓGICA DE ALUMNADO (Pestaña 1)
+        // =======================================================
+        private void CargarPersonas()
         {
             lsPersonas.Clear();
             var personas = AlumnoPersistence.leerPersonas();
@@ -75,47 +69,17 @@ namespace MiniHito
             if (dataGridPersonas != null) dataGridPersonas.ItemsSource = lsPersonas;
         }
 
-        public void start()
-        {
-            txtNombre.Text = ""; txtApellido.Text = ""; cmbCurso.SelectedItem = null;
-            btnModificar.IsEnabled = false; dataGridPersonas.SelectedItem = null;
-<<<<<<< Updated upstream
-            txtRazonSocial.Text = ""; txtDireccion.Text = ""; txtCiudad.Text = ""; txtTelefono.Text = ""; txtCorreo.Text = "";
-            btnModificarEmpresa.IsEnabled = false; dataGridEmpresa.SelectedItem = null;
-=======
->>>>>>> Stashed changes
-        }
-
-        private void dataGridPersonas_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Alumno a = dataGridPersonas.SelectedItem as Alumno;
-            if (a != null)
-            {
-                txtNombre.Text = a.Nombre; txtApellido.Text = a.Apellidos;
-                foreach (ComboBoxItem item in cmbCurso.Items)
-                    if (item.Tag != null && item.Tag.ToString() == a.Especialidad.ToString()) { cmbCurso.SelectedItem = item; break; }
-                btnModificar.IsEnabled = true;
-            }
-            else btnModificar.IsEnabled = false;
-        }
-
-        private void btnEliminar_Click(object sender, RoutedEventArgs e)
-        {
-            Alumno a = dataGridPersonas.SelectedItem as Alumno;
-            if (a != null && MessageBox.Show("¿Eliminar alumno?", "Confirmar", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {
-                try { a.eliminar(); lsPersonas.Remove(a); start(); } catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-        }
-
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellido.Text) || cmbCurso.SelectedItem == null) return;
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || cmbCurso.SelectedItem == null) return;
             try
             {
                 ComboBoxItem selectedItem = cmbCurso.SelectedItem as ComboBoxItem;
-                Alumno psnew = new Alumno(txtNombre.Text, txtApellido.Text, int.Parse(selectedItem.Tag.ToString()));
-                psnew.insertar(); cargarPersonas(); start(); MessageBox.Show("Agregado");
+                Alumno a = new Alumno(txtNombre.Text, txtApellido.Text, int.Parse(selectedItem.Tag.ToString()));
+                a.insertar();
+                CargarPersonas();
+                LimpiarCamposAlumno();
+                MessageBox.Show("Alumno agregado");
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
@@ -127,211 +91,158 @@ namespace MiniHito
             try
             {
                 ComboBoxItem selectedItem = cmbCurso.SelectedItem as ComboBoxItem;
-                a.Nombre = txtNombre.Text; a.Apellidos = txtApellido.Text; a.Especialidad = int.Parse(selectedItem.Tag.ToString());
-                a.actualizar(); dataGridPersonas.Items.Refresh(); start(); MessageBox.Show("Modificado");
+                a.Nombre = txtNombre.Text;
+                a.Apellidos = txtApellido.Text;
+                a.Especialidad = int.Parse(selectedItem.Tag.ToString());
+                a.actualizar();
+                dataGridPersonas.Items.Refresh();
+                MessageBox.Show("Alumno modificado");
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            Alumno a = dataGridPersonas.SelectedItem as Alumno;
+            if (a != null && MessageBox.Show("¿Eliminar?", "Confirmar", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                a.eliminar();
+                lsPersonas.Remove(a);
+                LimpiarCamposAlumno();
+            }
+        }
 
-        // =========================================================
-<<<<<<< Updated upstream
-        // PESTAÑA 2: GRUPOS
-=======
-        // PESTAÑA 2: GRUPOS (Lógica Nueva y Corregida)
->>>>>>> Stashed changes
-        // =========================================================
+        private void dataGridPersonas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Alumno a = dataGridPersonas.SelectedItem as Alumno;
+            if (a != null)
+            {
+                txtNombre.Text = a.Nombre;
+                txtApellido.Text = a.Apellidos;
+                foreach (ComboBoxItem item in cmbCurso.Items)
+                    if (item.Tag != null && item.Tag.ToString() == a.Especialidad.ToString()) { cmbCurso.SelectedItem = item; break; }
+                btnModificar.IsEnabled = true;
+            }
+            else
+            {
+                LimpiarCamposAlumno();
+            }
+        }
 
+        private void LimpiarCamposAlumno()
+        {
+            txtNombre.Text = ""; txtApellido.Text = ""; cmbCurso.SelectedItem = null;
+            btnModificar.IsEnabled = false; dataGridPersonas.SelectedItem = null;
+        }
+
+        // =======================================================
+        // LÓGICA DE GRUPOS (Pestaña 2)
+        // =======================================================
         private void CargarPestanaGrupos()
         {
-            // 1. Cargar lista de grupos (Abajo)
             listaGruposOC = new ObservableCollection<Grupo>(GrupoPersistence.LeerGrupos());
-            lstGrupos.ItemsSource = listaGruposOC;
-
-            // 2. Resetear formulario para "Crear Nuevo"
-            LimpiarModoCreacion();
+            if (lstGrupos != null) lstGrupos.ItemsSource = listaGruposOC;
+            LimpiarModoCreacionGrupo();
         }
 
-        // Prepara la pantalla para crear un grupo desde cero
-        private void LimpiarModoCreacion()
+        private void LimpiarModoCreacionGrupo()
         {
             grupoEnEdicion = null;
-            lstGrupos.SelectedItem = null;
-            txtNombreGrupo.Text = "";
+            if (lstGrupos != null) lstGrupos.SelectedItem = null;
+            if (txtNombreGrupo != null) txtNombreGrupo.Text = "";
 
-            // Cargar TODOS los alumnos disponibles a la izquierda
             var todos = AlumnoPersistence.leerPersonas();
+            // Izquierda: Alumnos sin grupo (Grupo == 0)
             alumnosSinGrupoOC = new ObservableCollection<Alumno>(todos.Where(a => a.Grupo == 0));
-            lstAlumnosSinGrupo.ItemsSource = alumnosSinGrupoOC;
+            if (lstAlumnosSinGrupo != null) lstAlumnosSinGrupo.ItemsSource = alumnosSinGrupoOC;
 
-            // Lista derecha VACÍA (preparada para recibir gente nueva)
+            // Derecha: Alumnos del grupo seleccionado (ahora ninguno)
             alumnosEnGrupoOC = new ObservableCollection<Alumno>();
-            lstAlumnosEnGrupo.ItemsSource = alumnosEnGrupoOC;
+            if (lstAlumnosEnGrupo != null) lstAlumnosEnGrupo.ItemsSource = alumnosEnGrupoOC;
         }
 
-        // Click en lista inferior: Cargar grupo para editar/eliminar
         private void lstGrupos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Si no hay nada seleccionado, salimos
             if (lstGrupos.SelectedItem == null) return;
+            grupoEnEdicion = lstGrupos.SelectedItem as Grupo;
+            txtNombreGrupo.Text = grupoEnEdicion.Nombre;
 
-            try
+            var todos = AlumnoPersistence.leerPersonas();
+            // Derecha: Cargamos los alumnos de ESTE grupo
+            alumnosEnGrupoOC = new ObservableCollection<Alumno>(todos.Where(a => a.Grupo == grupoEnEdicion.Id));
+            lstAlumnosEnGrupo.ItemsSource = alumnosEnGrupoOC;
+
+            // Izquierda: Siempre mostramos los que no tienen grupo
+            alumnosSinGrupoOC = new ObservableCollection<Alumno>(todos.Where(a => a.Grupo == 0));
+            lstAlumnosSinGrupo.ItemsSource = alumnosSinGrupoOC;
+        }
+
+        private void btnGuardarGrupo_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNombreGrupo.Text)) return;
+
+            if (grupoEnEdicion == null) // CREAR
             {
-                grupoEnEdicion = lstGrupos.SelectedItem as Grupo;
-                txtNombreGrupo.Text = grupoEnEdicion.Nombre;
-
-                // Intentamos cargar los alumnos. Si esto falla, que no rompa la selección.
-                try
+                Grupo nuevo = new Grupo(txtNombreGrupo.Text);
+                nuevo.Insertar();
+                // Recuperar ID para asignar alumnos
+                Grupo recuperado = GrupoPersistence.ObtenerGrupoPorNombre(txtNombreGrupo.Text);
+                if (recuperado != null)
                 {
-                    var todos = AlumnoPersistence.leerPersonas();
-
-                    // Derecha: Alumnos del grupo
-                    alumnosEnGrupoOC = new ObservableCollection<Alumno>(todos.Where(a => a.Grupo == grupoEnEdicion.Id));
-                    lstAlumnosEnGrupo.ItemsSource = alumnosEnGrupoOC;
-
-                    // Izquierda: Disponibles
-                    alumnosSinGrupoOC = new ObservableCollection<Alumno>(todos.Where(a => a.Grupo == 0));
-                    lstAlumnosSinGrupo.ItemsSource = alumnosSinGrupoOC;
+                    foreach (var alu in alumnosEnGrupoOC) { alu.Grupo = recuperado.Id; alu.actualizar(); }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Se seleccionó el grupo, pero hubo un error cargando sus alumnos: " + ex.Message);
-                }
+                MessageBox.Show("Grupo Creado");
             }
-            catch (Exception ex)
+            else // MODIFICAR
             {
-                MessageBox.Show("Error general al seleccionar: " + ex.Message);
+                grupoEnEdicion.Nombre = txtNombreGrupo.Text;
+                grupoEnEdicion.Actualizar();
+                MessageBox.Show("Grupo Actualizado");
+            }
+            CargarPestanaGrupos();
+        }
+
+        private void btnEliminarGrupo_Click(object sender, RoutedEventArgs e)
+        {
+            if (grupoEnEdicion != null)
+            {
+                if (MessageBox.Show("Se eliminará el grupo y los alumnos quedarán libres. ¿Seguro?", "Borrar", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    grupoEnEdicion.Eliminar();
+                    CargarPestanaGrupos();
+                }
             }
         }
 
-        // Botón >> (Mover a zona de espera derecha)
+        private void btnLimpiarGrupo_Click(object sender, RoutedEventArgs e) => LimpiarModoCreacionGrupo();
+
         private void btnMoverDerecha_Click(object sender, RoutedEventArgs e)
         {
             var alu = lstAlumnosSinGrupo.SelectedItem as Alumno;
-            if (alu == null) return;
-
-            // Movimiento Visual
-            alumnosSinGrupoOC.Remove(alu);
-            alumnosEnGrupoOC.Add(alu);
-
-            // Si estamos EDITANDO un grupo que YA EXISTE, guardamos el cambio inmediatamente
-            if (grupoEnEdicion != null)
+            if (alu != null)
             {
-                alu.Grupo = grupoEnEdicion.Id;
-                alu.actualizar();
+                alumnosSinGrupoOC.Remove(alu);
+                alumnosEnGrupoOC.Add(alu);
+                // Si estamos editando un grupo real, guardamos el cambio en BBDD ya
+                if (grupoEnEdicion != null) { alu.Grupo = grupoEnEdicion.Id; alu.actualizar(); }
             }
         }
 
-        // Botón << (Sacar de la zona derecha)
         private void btnMoverIzquierda_Click(object sender, RoutedEventArgs e)
         {
             var alu = lstAlumnosEnGrupo.SelectedItem as Alumno;
-            if (alu == null) return;
-
-            // Movimiento Visual
-            alumnosEnGrupoOC.Remove(alu);
-            alumnosSinGrupoOC.Add(alu);
-
-            // Si el alumno venía de un grupo real, lo liberamos en BD inmediatamente
-            if (alu.Grupo != 0)
+            if (alu != null)
             {
-                alu.Grupo = 0;
-                alu.actualizar();
+                alumnosEnGrupoOC.Remove(alu);
+                alumnosSinGrupoOC.Add(alu);
+                // Liberar alumno
+                alu.Grupo = 0; alu.actualizar();
             }
         }
 
-        // Botón AÑADIR / MODIFICAR
-        private void btnGuardarGrupo_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtNombreGrupo.Text)) { MessageBox.Show("Pon un nombre"); return; }
-
-            if (grupoEnEdicion == null)
-            {
-                // --- CREAR NUEVO ---
-                Grupo nuevo = new Grupo(txtNombreGrupo.Text);
-                nuevo.Insertar(); // 1. Crear grupo en BD
-
-                // 2. Obtener el ID que le ha dado la BD
-                Grupo recuperado = GrupoPersistence.ObtenerGrupoPorNombre(txtNombreGrupo.Text);
-
-                if (recuperado != null)
-                {
-                    // 3. Asignar los alumnos de la lista derecha a este nuevo ID
-                    foreach (var alu in alumnosEnGrupoOC)
-                    {
-                        alu.Grupo = recuperado.Id;
-                        alu.actualizar();
-                    }
-                    MessageBox.Show("Grupo Creado y Alumnos Asignados");
-                }
-            }
-            else
-            {
-                // --- MODIFICAR ---
-                grupoEnEdicion.Nombre = txtNombreGrupo.Text;
-                grupoEnEdicion.Actualizar();
-                MessageBox.Show("Nombre actualizado");
-            }
-
-            CargarPestanaGrupos(); // Recargar todo
-        }
-
-        // Botón ELIMINAR (Seleccionando de la lista inferior)
-        private void btnEliminarGrupo_Click(object sender, RoutedEventArgs e)
-        {
-            // 1. Intentamos coger el de la lista visual
-            Grupo g = lstGrupos.SelectedItem as Grupo;
-
-            // 2. Si no, intentamos coger el que está en edición
-            if (g == null) g = grupoEnEdicion;
-
-            if (g != null)
-            {
-                if (MessageBox.Show($"¿Eliminar el grupo '{g.Nombre}'?", "Confirmar", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    g.Eliminar(); // Esto llama al método que usa 'idgrupo' (minúscula)
-                    CargarPestanaGrupos(); // Refresca la lista
-
-                    // Limpiamos la selección para evitar errores
-                    LimpiarModoCreacion();
-                    MessageBox.Show("Grupo Eliminado");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, haz clic en un grupo de la lista inferior para seleccionarlo primero.");
-            }
-        }
-
-        // Botón LIMPIAR (Opcional, si tienes un botón 'Limpiar' para salir del modo edición)
-        private void btnLimpiarGrupo_Click(object sender, RoutedEventArgs e)
-        {
-            LimpiarModoCreacion();
-        }
-
-        // Gestión de pestañas
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.Source is TabControl)
-            {
-                var tab = (sender as TabControl).SelectedItem as TabItem;
-                if (tab != null)
-                {
-                    // Si el usuario hace clic en la pestaña GRUPOS, recargamos la lista desde cero
-                    if (tab.Header.ToString() == "GRUPOS")
-                    {
-                        CargarPestanaGrupos();
-                    }
-                }
-            }
-        }
-
-<<<<<<< Updated upstream
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
-
-        // =========================================================
-        // PESTAÑA 3: EMPRESAS
-        // =========================================================
+        // =======================================================
+        // LÓGICA DE EMPRESAS (Pestaña 3 - Maestro/Detalle)
+        // =======================================================
         private void cargarEmpresa()
         {
             lsEmpresa.Clear();
@@ -340,107 +251,134 @@ namespace MiniHito
             if (dataGridEmpresa != null) dataGridEmpresa.ItemsSource = lsEmpresa;
         }
 
-        private void btnEliminarEmpresa_Click(object sender, RoutedEventArgs e)
+        private void dataGridEmpresa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Empresa em = dataGridEmpresa.SelectedItem as Empresa;
-            if (em != null && MessageBox.Show("¿Eliminar empresa?", "Confirmar", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {
-                try { em.eliminar(); lsEmpresa.Remove(em); start(); } catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
+            // El Binding en XAML hace todo el trabajo de mostrar los datos en los TextBox
         }
 
         private void btnAgregarEmpresa_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtRazonSocial.Text) || string.IsNullOrWhiteSpace(txtDireccion.Text) || string.IsNullOrWhiteSpace(txtCiudad.Text) || string.IsNullOrWhiteSpace(txtTelefono.Text) || string.IsNullOrWhiteSpace(txtCorreo.Text)) return;
-            try
-            {
-                Empresa psnew = new Empresa(txtRazonSocial.Text, txtDireccion.Text, txtCiudad.Text, txtTelefono.Text, txtCorreo.Text);
-                psnew.insertar(); cargarEmpresa(); start(); MessageBox.Show("Agregado");
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            dataGridEmpresa.SelectedItem = null; // Limpiar selección
+            // Crear nueva empresa con los datos escritos
+            Empresa nueva = new Empresa(
+                txtRazonSocial.Text, txtDireccion.Text, txtCiudad.Text, txtTelefono.Text, txtCorreo.Text
+            );
+            nueva.insertar();
+            cargarEmpresa();
+            MessageBox.Show("Empresa creada");
         }
 
         private void btnModificarEmpresa_Click(object sender, RoutedEventArgs e)
         {
             Empresa em = dataGridEmpresa.SelectedItem as Empresa;
-            if (em == null) return;
-            try
+            if (em != null)
             {
-                em.RazonSocial = txtRazonSocial.Text; em.Ciudad = txtCiudad.Text; em.Telefono = txtTelefono.Text; em.Correo = txtCorreo.Text;
-                em.actualizar(); dataGridEmpresa.Items.Refresh(); start(); MessageBox.Show("Modificado");
+                // Al usar Binding TwoWay, el objeto 'em' ya tiene los cambios de los TextBox
+                em.actualizar();
+                dataGridEmpresa.Items.Refresh();
+                MessageBox.Show("Empresa actualizada");
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        private void dataGridEmpresa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnEliminarEmpresa_Click(object sender, RoutedEventArgs e)
         {
             Empresa em = dataGridEmpresa.SelectedItem as Empresa;
             if (em != null)
             {
-                em.RazonSocial = txtRazonSocial.Text; em.Ciudad = txtCiudad.Text; em.Telefono = txtTelefono.Text; em.Correo = txtCorreo.Text;
-                btnModificar.IsEnabled = true;
+                em.eliminar();
+                lsEmpresa.Remove(em);
             }
-            else btnModificar.IsEnabled = false;
         }
 
-        // =========================================================
-        // PESTAÑA 3: RETOS
-        // =========================================================
+        // =======================================================
+        // LÓGICA DE RETOS (Pestaña 4 - API y Validación)
+        // =======================================================
         private void cargarReto()
         {
             lsReto.Clear();
             var retos = RetoPersistence.LeerRetos();
-            foreach (var p in retos) lsReto.Add(p);
+            foreach (var r in retos) lsReto.Add(r);
             if (dataGridReto != null) dataGridReto.ItemsSource = lsReto;
+        }
+
+        // Evento clave del examen: Validar API
+        private async void dpFechaInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dpFechaInicio.SelectedDate.HasValue)
+            {
+                lblInfoFestivo.Text = "Comprobando festivos...";
+                lblInfoFestivo.Foreground = System.Windows.Media.Brushes.Orange;
+
+                // Llamada a tu servicio API
+                bool esFestivo = await CalendarificService.EsFestivo(dpFechaInicio.SelectedDate.Value);
+
+                if (esFestivo)
+                {
+                    lblInfoFestivo.Text = "¡ERROR! La fecha seleccionada es un día FESTIVO NACIONAL.";
+                    lblInfoFestivo.Foreground = System.Windows.Media.Brushes.Red;
+                    btnAgregarReto.IsEnabled = false; // Bloquear botón
+                }
+                else
+                {
+                    lblInfoFestivo.Text = "Fecha válida (Día laborable).";
+                    lblInfoFestivo.Foreground = System.Windows.Media.Brushes.Green;
+                    btnAgregarReto.IsEnabled = true; // Permitir guardar
+                }
+            }
+        }
+
+        private void btnAgregarReto_Click(object sender, RoutedEventArgs e)
+        {
+            if (dpFechaInicio.SelectedDate == null || string.IsNullOrWhiteSpace(txtRetoNombre.Text))
+            {
+                MessageBox.Show("Faltan datos (Nombre o Fecha)"); return;
+            }
+            Reto r = new Reto(
+                txtRetoNombre.Text,
+                txtRetoDescripcion.Text,
+                dpFechaInicio.SelectedDate.Value,
+                chkRetoActivo.IsChecked == true
+            );
+            r.insertar();
+            cargarReto();
+            MessageBox.Show("Reto agregado");
+        }
+
+        private void btnModificarReto_Click(object sender, RoutedEventArgs e)
+        {
+            Reto r = dataGridReto.SelectedItem as Reto;
+            if (r != null)
+            {
+                r.Nombre = txtRetoNombre.Text;
+                r.Descripcion = txtRetoDescripcion.Text;
+                r.FechaInicio = dpFechaInicio.SelectedDate.Value;
+                r.Activo = chkRetoActivo.IsChecked == true;
+                r.actualizar();
+                dataGridReto.Items.Refresh();
+                MessageBox.Show("Reto modificado");
+            }
         }
 
         private void btnEliminarReto_Click(object sender, RoutedEventArgs e)
         {
             Reto r = dataGridReto.SelectedItem as Reto;
-            if (r != null && MessageBox.Show("¿Eliminar empresa?", "Confirmar", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (r != null)
             {
-                try { r.eliminar(); lsReto.Remove(r); start(); } catch (Exception ex) { MessageBox.Show(ex.Message); }
+                r.eliminar();
+                lsReto.Remove(r);
             }
-        }
-
-        //private void btnAgregarReto_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (string.IsNullOrWhiteSpace(txtDescripcion.Text) || string.IsNullOrWhiteSpace(txtActivo.Text)) return;
-        //    try
-        //    {
-        //        Reto psnew = new Reto(txtDescripcion.Text, txtActivo.bool);
-        //        psnew.insertar(); cargarReto(); start(); MessageBox.Show("Agregado");
-        //    }
-        //    catch (Exception ex) { MessageBox.Show(ex.Message); }
-        //}
-
-        private void btnModificarReto_Click(object sender, RoutedEventArgs e)
-        {
-            Empresa em = dataGridEmpresa.SelectedItem as Empresa;
-            if (em == null) return;
-            try
-            {
-                em.RazonSocial = txtRazonSocial.Text; em.Ciudad = txtCiudad.Text; em.Telefono = txtTelefono.Text; em.Correo = txtCorreo.Text;
-                em.actualizar(); dataGridEmpresa.Items.Refresh(); start(); MessageBox.Show("Modificado");
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void dataGridReto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Empresa em = dataGridEmpresa.SelectedItem as Empresa;
-            if (em != null)
+            Reto r = dataGridReto.SelectedItem as Reto;
+            if (r != null)
             {
-                em.RazonSocial = txtRazonSocial.Text; em.Ciudad = txtCiudad.Text; em.Telefono = txtTelefono.Text; em.Correo = txtCorreo.Text;
-                btnModificar.IsEnabled = true;
+                txtRetoNombre.Text = r.Nombre;
+                txtRetoDescripcion.Text = r.Descripcion;
+                dpFechaInicio.SelectedDate = r.FechaInicio;
+                chkRetoActivo.IsChecked = r.Activo;
             }
-            else btnModificar.IsEnabled = false;
         }
     }
 }
-=======
-        // Necesario si existe en tu XAML
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
-    }
-}
->>>>>>> Stashed changes

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using ExampleMVCnoDatabase.Persistence;
-using MiniHito.domain; // Asegúrate de tener la clase Empresa aquí
+using MiniHito.domain;
 
 namespace MiniHito.persistence
 {
@@ -13,13 +13,12 @@ namespace MiniHito.persistence
             List<Empresa> lista = new List<Empresa>();
             try
             {
-                // Tabla: empresa
-                string sql = "SELECT * FROM aceptasreto.empresa;";
+                string sql = "SELECT * FROM AceptasReto.empresa;";
                 List<Object> aux = DBBroker.obtenerAgente().leer(sql);
 
                 foreach (List<Object> fila in aux)
                 {
-                    // Orden columnas SQL: 0:ID, 1:RAZON_SOCIAL, 2:DIRECCION, 3:CIUDAD, 4:TELEFONO, 5:CORREO
+                    // Orden en tu modelo: ID_EMPRESA, RAZON_SOCIAL, DIRECCION, CIUDAD, TELEFONO, CORREO
                     Empresa e = new Empresa();
                     e.Id = Convert.ToInt32(fila[0]);
                     e.RazonSocial = fila[1].ToString();
@@ -39,7 +38,7 @@ namespace MiniHito.persistence
         {
             try
             {
-                string sql = "INSERT INTO aceptasreto.empresa (RAZON_SOCIAL, DIRECCION, CIUDAD, TELEFONO, CORREO) VALUES ('" +
+                string sql = "INSERT INTO AceptasReto.empresa (RAZON_SOCIAL, DIRECCION, CIUDAD, TELEFONO, CORREO) VALUES ('" +
                              e.RazonSocial + "', '" +
                              e.Direccion + "', '" +
                              e.Ciudad + "', '" +
@@ -54,7 +53,7 @@ namespace MiniHito.persistence
         {
             try
             {
-                string sql = "UPDATE aceptasreto.empresa SET " +
+                string sql = "UPDATE AceptasReto.empresa SET " +
                              "RAZON_SOCIAL = '" + e.RazonSocial + "', " +
                              "DIRECCION = '" + e.Direccion + "', " +
                              "CIUDAD = '" + e.Ciudad + "', " +
@@ -70,7 +69,7 @@ namespace MiniHito.persistence
         {
             try
             {
-                string sql = "DELETE FROM aceptasreto.empresa WHERE ID_EMPRESA = " + id + ";";
+                string sql = "DELETE FROM AceptasReto.empresa WHERE ID_EMPRESA = " + id + ";";
                 DBBroker.obtenerAgente().modificar(sql);
             }
             catch (Exception ex) { MessageBox.Show("Error eliminando empresa: " + ex.Message); }

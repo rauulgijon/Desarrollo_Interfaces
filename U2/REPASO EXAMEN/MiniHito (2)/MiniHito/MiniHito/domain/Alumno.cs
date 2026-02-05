@@ -1,73 +1,45 @@
 using MiniHito.persistence;
-using System;
-using System.Collections.Generic;
 
 namespace MiniHito.domain
 {
     public class Alumno
     {
-        private AlumnoPersistence am { get; set; }
-
         public int Id { get; set; }
-        public String Nombre { get; set; }
-        public String Apellidos { get; set; }
-        public int Especialidad { get; set; }
+        public string Nombre { get; set; }
+        public string Apellidos { get; set; }
+        public int Especialidad { get; set; } // 1=DAM, 2=DAW...
+        public int Grupo { get; set; }        // ID del grupo
 
-<<<<<<< Updated upstream
-        public int Grupo { get; set; }
-
-=======
-        // --- NUEVO: Propiedad Grupo ---
-        public int Grupo { get; set; }
-
-        // --- NUEVO: Helper para mostrar nombre completo en ListBox ---
->>>>>>> Stashed changes
-        public string NombreCompleto
-        {
-            get { return Nombre + " " + Apellidos; }
-        }
+        private AlumnoPersistence pm;
 
         public Alumno()
         {
-            am = new AlumnoPersistence();
+            pm = new AlumnoPersistence();
         }
 
-        // Constructor completo actualizado
-        public Alumno(int id, String nombre, String apellidos, int especialidad, int grupo)
+        // Constructor completo para cuando leemos de la BBDD
+        public Alumno(int id, string nombre, string apellidos, int especialidad, int grupo)
         {
             Id = id;
             Nombre = nombre;
             Apellidos = apellidos;
             Especialidad = especialidad;
-            Grupo = grupo; // Asignar grupo
-            am = new AlumnoPersistence();
+            Grupo = grupo;
+            pm = new AlumnoPersistence();
         }
 
-<<<<<<< Updated upstream
-=======
-        // Constructor compatible con tu código anterior (asigna grupo 0)
->>>>>>> Stashed changes
-        public Alumno(int id, String nombre, String apellidos, int especialidad)
-        {
-            Id = id;
-            Nombre = nombre;
-            Apellidos = apellidos;
-            Especialidad = especialidad;
-            Grupo = 0;
-            am = new AlumnoPersistence();
-        }
-
-        public Alumno(String nombre, String apellidos, int especialidad)
+        // Constructor para crear uno nuevo (sin ID)
+        public Alumno(string nombre, string apellidos, int especialidad)
         {
             Nombre = nombre;
             Apellidos = apellidos;
             Especialidad = especialidad;
-            Grupo = 0;
-            am = new AlumnoPersistence();
+            Grupo = 0; // Sin grupo por defecto
+            pm = new AlumnoPersistence();
         }
 
-        public void insertar() => am.insertarPersona(this);
-        public void actualizar() => am.actualizarPersona(this);
-        public void eliminar() => am.eliminarPersona(this.Id);
+        public void insertar() => pm.insertarPersona(this);
+        public void actualizar() => pm.actualizarPersona(this);
+        public void eliminar() => pm.eliminarPersona(this.Id);
     }
 }

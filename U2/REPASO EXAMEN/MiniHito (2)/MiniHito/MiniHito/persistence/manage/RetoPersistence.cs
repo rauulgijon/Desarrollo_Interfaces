@@ -18,12 +18,21 @@ namespace MiniHito.persistence
 
                 foreach (List<Object> fila in aux)
                 {
-                    // 0:ID_RETO, 1:DESCRIPCION, 2:ACTIVO
+                    // Mapeo actualizado: 
+                    // 0:ID_RETO, 1:NOMBRE, 2:DESCRIPCION, 3:FECHA_INICIO, 4:ACTIVO
                     Reto r = new Reto();
                     r.Id = Convert.ToInt32(fila[0]);
-                    r.Descripcion = fila[1].ToString();
-                    // Convertimos TinyInt (0/1) a Boolean si tu clase lo usa, o int si prefieres
-                    r.Activo = Convert.ToInt32(fila[2]) == 1;
+                    r.Nombre = fila[1].ToString();      // CAMPO NUEVO
+                    r.Descripcion = fila[2].ToString();
+
+                    // Manejo seguro de fechas
+                    if (fila[3] != null && DateTime.TryParse(fila[3].ToString(), out DateTime fecha))
+                    {
+                        r.FechaInicio = fecha;          // CAMPO NUEVO
+                    }
+
+                    // Convertir TinyInt (0/1) a Bool
+                    r.Activo = Convert.ToInt32(fila[4]) == 1;
 
                     lista.Add(r);
                 }
@@ -37,9 +46,13 @@ namespace MiniHito.persistence
             try
             {
                 int activoVal = r.Activo ? 1 : 0;
-                string sql = "INSERT INTO aceptasreto.reto (DESCRIPCION, ACTIVO) VALUES ('" +
-                             r.Descripcion + "', " +
-                             activoVal + ");";
+                // Formato de fecha para MySQL: YYYY-MM-DD
+                string fechaSql = r.FechaInicio.ToString("yyyy-MM-dd");
+
+                // Consulta actualizada con NOMBRE y FECHA_INICIO
+                string sql = $"INSERT INTO aceptasreto.reto (NOMBRE, DESCRIPCION, FECHA_INICIO, ACTIVO) " +
+                             $"VALUES ('{r.Nombre}', '{r.Descripcion}', '{fechaSql}', {activoVal});";
+
                 DBBroker.obtenerAgente().modificar(sql);
             }
             catch (Exception ex) { MessageBox.Show("Error insertando reto: " + ex.Message); }
@@ -50,10 +63,16 @@ namespace MiniHito.persistence
             try
             {
                 int activoVal = r.Activo ? 1 : 0;
-                string sql = "UPDATE aceptasreto.reto SET " +
-                             "DESCRIPCION = '" + r.Descripcion + "', " +
-                             "ACTIVO = " + activoVal + " " +
-                             "WHERE ID_RETO = " + r.Id + ";";
+                string fechaSql = r.FechaInicio.ToString("yyyy-MM-dd");
+
+                // Consulta actualizada
+                string sql = $"UPDATE aceptasreto.reto SET " +
+                             $"NOMBRE = '{r.Nombre}', " +
+                             $"DESCRIPCION = '{r.Descripcion}', " +
+                             $"FECHA_INICIO = '{fechaSql}', " +
+                             $"ACTIVO = {activoVal} " +
+                             $"WHERE ID_RETO = {r.Id};";
+
                 DBBroker.obtenerAgente().modificar(sql);
             }
             catch (Exception ex) { MessageBox.Show("Error actualizando reto: " + ex.Message); }

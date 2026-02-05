@@ -1,20 +1,16 @@
 using MiniHito.persistence;
-using System;
 
 namespace MiniHito.domain
 {
     public class Grupo
     {
         public int Id { get; set; }
-        public string Nombre { get; set; }
-        private GrupoPersistence pm; // Gestor de persistencia
+        public string Nombre { get; set; } // Mapea a 'DESCRIPCION' en la BD
 
-        public Grupo() { pm = new GrupoPersistence(); }
+        private GrupoPersistence pm;
 
-        public Grupo(int id, string nombre)
+        public Grupo()
         {
-            Id = id;
-            Nombre = nombre;
             pm = new GrupoPersistence();
         }
 
@@ -24,15 +20,20 @@ namespace MiniHito.domain
             pm = new GrupoPersistence();
         }
 
-        // Métodos que llaman a la persistencia
+        public Grupo(int id, string nombre)
+        {
+            Id = id;
+            Nombre = nombre;
+            pm = new GrupoPersistence();
+        }
+
         public void Insertar() => pm.InsertarGrupo(this);
         public void Actualizar() => pm.ActualizarGrupo(this);
         public void Eliminar() => pm.EliminarGrupo(this.Id);
 
-        // Esto es CRUCIAL para que en el ListBox se vea el nombre y no "MiniHito.domain.Grupo"
         public override string ToString()
         {
-            return Nombre;
+            return Nombre; // Importante para que el ComboBox muestre el nombre y no "MiniHito.domain.Grupo"
         }
     }
 }
