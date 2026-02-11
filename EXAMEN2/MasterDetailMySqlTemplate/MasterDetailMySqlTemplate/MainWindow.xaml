@@ -1,0 +1,40 @@
+﻿<Window x:Class="MasterDetailMySqlTemplate.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestión de Alumnos (Con Broker)" Height="450" Width="650">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Column="0" 
+                 ItemsSource="{Binding Alumnos}"
+                 DisplayMemberPath="Nombre"
+                 SelectedItem="{Binding SelectedAlumno, Mode=TwoWay}"
+                 Margin="10"/>
+
+        <StackPanel Grid.Column="1" Margin="20">
+            <TextBlock Text="Ficha del Alumno" FontSize="22" FontWeight="Bold" Margin="0,0,0,15"/>
+
+            <TextBlock Text="Nombre y Apellidos:" Foreground="Gray"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="{Binding SelectedAlumno.Nombre}" FontSize="16" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding SelectedAlumno.Apellido}" FontSize="16"/>
+            </StackPanel>
+
+            <TextBlock Text="Correo:" Foreground="Gray"/>
+            <TextBlock Text="{Binding SelectedAlumno.Correo}" FontSize="16" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Curso y Ciclo:" Foreground="Gray"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="{Binding SelectedAlumno.Curso}" FontSize="16" Margin="0,0,5,0"/>
+                <TextBlock Text="-" FontSize="16" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding SelectedAlumno.Ciclo}" FontSize="16"/>
+            </StackPanel>
+
+            <TextBlock Text="ID Grupo:" Foreground="Gray"/>
+            <TextBlock Text="{Binding SelectedAlumno.IdGrupo}" FontSize="16"/>
+        </StackPanel>
+    </Grid>
+</Window>

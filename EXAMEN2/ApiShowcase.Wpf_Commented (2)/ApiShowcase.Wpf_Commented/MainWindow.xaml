@@ -1,0 +1,83 @@
+<!-- MainWindow.xaml — XAML with inline comments -->
+<Window x:Class="ApiShowcase.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="API Showcase (WPF)" Height="600" Width="900">
+    <Grid>
+        <TabControl> <!-- TabControl: three tabs to showcase different APIs -->
+            <!-- Tab 1: RESTful API dev -->
+            <TabItem Header="Objects (restful-api.dev)"> <!-- Tab 1: restful-api.dev (list + search by ID) -->
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <Button Content="Load all" Click="Objects_LoadAll_Click" Width="100"/> <!-- Button triggers GET /objects -->
+                        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                            <TextBox x:Name="ObjIdBox" Width="150"/>
+                            <Button Content="Search by ID" Click="Objects_SearchById_Click" Margin="10,0,0,0"/> <!-- Button triggers GET /objects/{id} -->
+                        </StackPanel>
+                        <TextBlock x:Name="ObjectsStatus" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="Gray"/>
+                    </DockPanel>
+                    <ListBox x:Name="ObjectsList" Grid.Row="1" DisplayMemberPath="name"/>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab 2: REST Countries -->
+            <TabItem Header="Countries (restcountries)"> <!-- Tab 2: REST Countries (search by name) -->
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <TextBox x:Name="CountryQueryBox" Width="250"/>
+                        <Button Content="Search" Click="Countries_Search_Click" Margin="10,0,0,0" Width="100"/>
+                        <TextBlock x:Name="CountriesStatus" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="Gray"/>
+                    </DockPanel>
+                    <DataGrid x:Name="CountriesGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"> <!-- Grid shows country name, code, capital, population -->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Code" Binding="{Binding Code}" Width="80"/>
+                            <DataGridTextColumn Header="Capital" Binding="{Binding Capital}" Width="*"/>
+                            <DataGridTextColumn Header="Population" Binding="{Binding Population}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab 3: PokéAPI -->
+            <TabItem Header="Pokémon (pokeapi)"> <!-- Tab 3: PokéAPI (search by name or ID) -->
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <TextBox x:Name="PokeQueryBox" Width="250"/>
+                        <Button Content="Search" Click="Poke_Search_Click" Margin="10,0,0,0" Width="100"/>
+                        <TextBlock x:Name="PokeStatus" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="Gray"/>
+                    </DockPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10,0,10">
+                        <TextBlock Text="ID:" FontWeight="Bold"/>
+                        <TextBlock x:Name="PokeIdText" Margin="5,0,20,0"/>
+                        <TextBlock Text="Name:" FontWeight="Bold"/>
+                        <TextBlock x:Name="PokeNameText" Margin="5,0,20,0"/>
+                        <TextBlock Text="Height:" FontWeight="Bold"/>
+                        <TextBlock x:Name="PokeHeightText" Margin="5,0,20,0"/>
+                        <TextBlock Text="Weight:" FontWeight="Bold"/>
+                        <TextBlock x:Name="PokeWeightText" Margin="5,0,20,0"/>
+                    </StackPanel>
+                    <DataGrid x:Name="PokeStatsGrid" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True"> <!-- Grid lists Pokémon base stats -->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Stat" Binding="{Binding stat.name}" Width="*"/>
+                            <DataGridTextColumn Header="Base" Binding="{Binding base_stat}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl> <!-- TabControl: three tabs to showcase different APIs -->
+    </Grid>
+</Window>
