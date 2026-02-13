@@ -1,0 +1,187 @@
+﻿<Window x:Class="Examen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Examen"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="66" />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid HorizontalAlignment="Center" Height="86" VerticalAlignment="Center" Width="800" Background="#FFCC1CD6">
+            <Label Content="EXAMEN 2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="44" Width="136" FontSize="26" Foreground="White"/>
+        </Grid>
+
+
+        <TabControl Grid.Row="1" TabStripPlacement="Top">
+
+
+
+            <TabItem Header="CLIENTES" Margin="-2,-2,-3,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="92*" MinWidth="300"/>
+                        <ColumnDefinition Width="208*"/>
+                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="dataGridClientes" Grid.Row="1" Grid.Column="0" Margin="10,10,3,10" MinWidth="300" SelectionChanged="dataGridClientes_SelectionChanged" AutoGenerateColumns="False" Grid.ColumnSpan="5">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="auto" />
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto" />
+                            <DataGridTextColumn Header="Direccion" Binding="{Binding Direccion}" Width="auto" />
+                            <DataGridTextColumn Header="Telefono" Binding="{Binding Telefono}" Width="auto" />
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="auto" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="6" Margin="10,0,20,0" VerticalAlignment="Top">
+                        <Label Content="Nombre" FontSize="14" Margin="0,5,0,2"/>
+                        <TextBox x:Name="txtNombre" Height="25" FontSize="14" Margin="0,0,0,5"/>
+                        <Label Content="Dirección" FontSize="14" Margin="0,3,0,2"/>
+                        <TextBox x:Name="txtDireccion" Height="25" FontSize="14" Margin="0,0,0,5"/>
+                        <Label Content="Telefono" FontSize="14" Margin="0,5,0,2"/>
+                        <TextBox x:Name="txtTelefono" Height="25" FontSize="14" Margin="0,0,0,5"/>
+                        <Label Content="Email" FontSize="14" Margin="0,3,0,2"/>
+                        <TextBox x:Name="txtEmail" Height="25" FontSize="14" Margin="0,0,0,5"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Left" Margin="42,0,0,0" VerticalAlignment="Center">
+                        <Button x:Name="btnAgregarCliente" Content="Agregar" Width="90" Height="30" Margin="3" Click="btnAgregarCliente_Click"/>
+                        <Button x:Name="btnModificarCliente" Content="Modificar" Width="90" Height="30" Margin="3" Click="btnModificarCliente_Click"/>
+                        <Button x:Name="btnEliminarCliente" Content="Eliminar" Width="90" Height="30" Margin="3" Click="btnEliminarCliente_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+
+
+            <TabItem Header="MASCOTAS" Height="20" VerticalAlignment="Center" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48*" MinWidth="300"/>
+                        <ColumnDefinition Width="252*"/>
+                        <ColumnDefinition Width="91*"/>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="17*"/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="dataGridMascotas" Grid.Row="1" Grid.Column="0" Margin="10,10,10,10" MinWidth="300" SelectionChanged="dataGridMascotas_SelectionChanged" AutoGenerateColumns="False" Grid.ColumnSpan="5">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="auto" />
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto" />
+                            <DataGridTextColumn Header="Especie" Binding="{Binding Especie}" Width="auto" />
+                            <DataGridTextColumn Header="Raza" Binding="{Binding Raza}" Width="auto" />
+                            <DataGridTextColumn Header="Fecha Nacimiento" Binding="{Binding Fechanac}" Width="auto" />
+                            <DataGridTextColumn Header="Id Cliente" Binding="{Binding Idcliente}" Width="auto" />
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="5" Margin="10,0,20,0" VerticalAlignment="Top">
+                        <Label Content="Nombre Mascota" FontSize="14" Margin="0,5,0,2"/>
+                        <TextBox x:Name="txtNombreMascota" Height="25" FontSize="14" Margin="0,0,0,5"/>
+                        <Label Content="Especie" FontSize="14" Margin="0,3,0,2"/>
+                        <TextBox x:Name="txtEspecie" Height="25" FontSize="14" Margin="0,0,0,5"/>
+                        <Label Content="Raza" FontSize="14" Margin="0,3,0,2"/>
+                        <TextBox x:Name="txtRaza" Height="25" FontSize="14" Margin="0,0,0,5"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label x:Name="lbles" Content="" Margin="0,0,40,0" />
+                            <Label x:Name="lblFecha" Content="FECHA:" Margin="0,0,20,0"/>
+                            <DatePicker x:Name="datePickerFechaNacimiento"/>
+
+                        </StackPanel>
+                        <Label Content="Cliente" FontSize="14" Margin="0,3,0,2"/>
+                        <TextBox x:Name="txtCliente" Height="25" FontSize="14" Margin="0,0,0,5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Left" Margin="42,0,0,0" VerticalAlignment="Center">
+                        <Button x:Name="btnAgregarMascota" Content="Agregar" Width="90" Height="30" Margin="3" Click="btnAgregarMascota_Click"/>
+                        <Button x:Name="btnModificarMascota" Content="Modificar" Width="90" Height="30" Margin="3" Click="btnModificarMascota_Click"/>
+                        <Button x:Name="btnEliminarMascota" Content="Eliminar" Width="90" Height="30" Margin="3" Click="btnEliminarMascota_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="CONSULTAS" Height="20" VerticalAlignment="Center" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48*" MinWidth="300"/>
+                        <ColumnDefinition Width="252*"/>
+                        <ColumnDefinition Width="91*"/>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="17*"/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="dataGridConsultas" Grid.Row="1" Grid.Column="0" Margin="10,10,10,10" MinWidth="300" SelectionChanged="dataGridConsultas_SelectionChanged" AutoGenerateColumns="False" Grid.ColumnSpan="5">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="auto" />
+                            <DataGridTextColumn Header="Fecha consulta" Binding="{Binding Fechaconsulta}" Width="auto" />
+                            <DataGridTextColumn Header="Diagnostico" Binding="{Binding Diagnostico}" Width="auto" />
+                            <DataGridTextColumn Header="Id Mascota" Binding="{Binding Idmascota}" Width="auto" />
+                            <DataGridTextColumn Header="Id Veterinario" Binding="{Binding Idveterinario}" Width="auto" />
+
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="5" Margin="10,0,20,0" VerticalAlignment="Top">
+                        
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label x:Name="lblese" Content="" Margin="0,0,40,0" />
+                            <Label x:Name="lblFechas" Content="FECHA:" Margin="0,0,20,0"/>
+                            <DatePicker x:Name="datePickerFechaConsulta"/>
+
+                        </StackPanel>
+                        <Label Content="Diagnostico" FontSize="14" Margin="0,3,0,2"/>
+                        <TextBox x:Name="txtDiagnostico" Height="25" FontSize="14" Margin="0,0,0,5"/>
+                        <Label Content="Mascota" FontSize="14" Margin="0,3,0,2"/>
+                        <TextBox x:Name="txtMascota" Height="25" FontSize="14" Margin="0,0,0,5"/>
+                        <Label Content="Veterinario" FontSize="14" Margin="0,3,0,2"/>
+                        <TextBox x:Name="txtVeterinario" Height="25" FontSize="14" Margin="0,0,0,5"/>
+
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Left" Margin="42,0,0,0" VerticalAlignment="Center">
+                        <Button x:Name="btnAgregarConsulta" Content="Agregar" Width="90" Height="30" Margin="3" Click="btnAgregarConsulta_Click"/>
+                        <Button x:Name="btnModificarConsulta" Content="Modificar" Width="90" Height="30" Margin="3" Click="btnModificarConsulta_Click"/>
+                        <Button x:Name="btnEliminarConsulta" Content="Eliminar" Width="90" Height="30" Margin="3" Click="btnEliminarConsulta_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
